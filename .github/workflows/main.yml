@@ -10,12 +10,6 @@ jobs:
     name: Build my project ✨
     runs-on: ubuntu-latest
     steps:
-      # Checkout
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          lfs: true
-          
       - name: Free Disk Space (Maximize Filter)
         uses: easimon/maximize-build-space@master
         with:
@@ -26,6 +20,12 @@ jobs:
           remove-haskell: 'true'
           remove-codeql: 'true'
           remove-docker-images: 'true'
+    
+      # Checkout
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
 
       # Cache
       - uses: actions/cache@v3
