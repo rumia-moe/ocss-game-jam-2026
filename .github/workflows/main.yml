@@ -17,7 +17,7 @@ jobs:
           lfs: true
           
       - name: Free Disk Space (Maximize Filter)
-        uses: easimon/maximize-build-disk-space@v10
+        uses: easimon/maximize-build-space@master
         with:
           root-reserve-mb: 51200
           swap-size-mb: 1024
