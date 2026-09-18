@@ -1,21 +1,27 @@
-using UnityEngine;
 
 public class MovementSpeedEntityAttribute : EntityAttribute
 {
 
-    public float movementSpeed = 1f;
+    private float movementSpeed;
+
+    public MovementSpeedEntityAttribute(float movementSpeed)
+    {
+
+        this.movementSpeed = movementSpeed;
+
+    }
 
     public override void Add(Entity entity)
     {
 
-        entity.movementSpeed *= movementSpeed;
+        entity.movementSpeed *= this.movementSpeed;
 
     }
 
     public override void Remove(Entity entity)
     {
 
-        entity.movementSpeed /= movementSpeed;
+        entity.movementSpeed /= this.movementSpeed;
 
     }
 

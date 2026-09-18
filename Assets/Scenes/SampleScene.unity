@@ -395,8 +395,7 @@ MonoBehaviour:
   entityName: Entity
   entityHealth: 10
   movementSpeed: 1
-  entityAttributes:
-  - {fileID: 0}
+  entityAttributes: []
   entitySkills: []
 --- !u!114 &1903195090
 MonoBehaviour:

@@ -1,6 +1,4 @@
-using UnityEngine;
-
-public abstract class EntityAttribute : MonoBehaviour
+public abstract class EntityAttribute
 {
 
     public string entityAttributeName = "Entity Attribute";

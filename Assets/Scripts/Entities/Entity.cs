@@ -12,17 +12,18 @@ public abstract class Entity : MonoBehaviour
     public float entityHealth = 10f;
 
     // Attributes
+    [HideInInspector]
     public float movementSpeed = 1f;
 
-    public EntityAttribute[] entityAttributes = { };
-    public EntitySkill[] entitySkills = { };
+    protected virtual EntityAttribute[] EntityAttributes { get; set; } = { };
+    protected virtual EntitySkill[] EntitySkills { get; set; } = { };
 
     private void Start()
     {
 
         rigidbody = GetComponent<Rigidbody2D>();
         
-        foreach (var entityAttribute in entityAttributes)
+        foreach (var entityAttribute in EntityAttributes)
         {
 
             entityAttribute.Add(this);
