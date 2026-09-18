@@ -7,7 +7,7 @@ public class Player : Entity
     public void OnMove(InputAction.CallbackContext context)
     {
 
-        rigidbody.linearVelocity = context.ReadValue<Vector2>();
+        rigidbody.linearVelocity = context.ReadValue<Vector2>() * movementSpeed;
 
     }
 

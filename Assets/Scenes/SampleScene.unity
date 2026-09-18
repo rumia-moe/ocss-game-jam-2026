@@ -394,7 +394,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   entityName: Entity
   entityHealth: 10
-  entityAttributes: []
+  movementSpeed: 1
+  entityAttributes:
+  - {fileID: 0}
   entitySkills: []
 --- !u!114 &1903195090
 MonoBehaviour:

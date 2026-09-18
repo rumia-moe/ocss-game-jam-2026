@@ -11,6 +11,9 @@ public abstract class Entity : MonoBehaviour
     public string entityName = "Entity";
     public float entityHealth = 10f;
 
+    // Attributes
+    public float movementSpeed = 1f;
+
     public EntityAttribute[] entityAttributes = { };
     public EntitySkill[] entitySkills = { };
 
@@ -18,6 +21,13 @@ public abstract class Entity : MonoBehaviour
     {
 
         rigidbody = GetComponent<Rigidbody2D>();
+        
+        foreach (var entityAttribute in entityAttributes)
+        {
+
+            entityAttribute.Add(this);
+
+        }
 
     }
 
