@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26dc392ed279dd74fb48479b0ff896bb, type: 3}
+  m_Name: NewFishProfile
+  m_EditorClassIdentifier: Assembly-CSharp::FishProfile
+  segments:
+  - length: 0.31990528
+    height: 0.01
+    lateralBend: 8
+  - length: 0.11985495
+    height: 0.56384754
+    lateralBend: 13.285714
+  - length: 0.33436438
+    height: 0.799453
+    lateralBend: 18.571428
+  - length: 0.30654
+    height: 0.48944318
+    lateralBend: 23.857143
+  - length: 0.29821116
+    height: 0.48062468
+    lateralBend: 29.142859
+  - length: 0.24454562
+    height: 0.5367088
+    lateralBend: 34.428574
+  - length: 0.24070619
+    height: 0.4978904
+    lateralBend: 39.714287
+  - length: 0.21456468
+    height: 0.29225576
+    lateralBend: 45
+  fins: []
+  followSpeed: 0.15
+  solverIterations: 5

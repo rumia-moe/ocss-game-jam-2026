@@ -1,5 +1,8 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using static UnityEngine.EventSystems.EventTrigger;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
@@ -14,7 +17,8 @@ public abstract class Entity : MonoBehaviour, IInteractable
     public Collider2D hitboxCollider;
 
     public virtual string EntityName { get; set; } = "Entity";
-    public virtual float EntityHealth { get; set; } = 10f;
+    public virtual float EntityMaxHealth { get; set; } = 10f;
+    public virtual float EntityCurrentHealth { get; set; } = 10f;
 
     // Attributes
     [HideInInspector]
@@ -28,6 +32,8 @@ public abstract class Entity : MonoBehaviour, IInteractable
     protected virtual EntitySkill[] EntitySkills { get; set; } = { };
 
     public Collider2D SelectableCollider => overtnessCollider;
+
+    private float oceanBoundary = 22;
 
     protected virtual void Start()
     {
@@ -44,6 +50,20 @@ public abstract class Entity : MonoBehaviour, IInteractable
     }
 
     protected virtual void Update() { }
+
+    protected virtual void FixedUpdate() { 
+    
+        if(transform.position.y >= oceanBoundary)
+        {
+            rigidbody.gravityScale = 2;
+            
+        }
+        else
+        {
+            rigidbody.gravityScale = 0;
+        }
+    
+    }
 
     protected virtual void UseSkill(EntitySkill skill)
     {
@@ -62,7 +82,7 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
     public virtual void Interact() { }
 
-    protected virtual void OnCollisionStay2D(Collision2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.otherCollider != this.hitboxCollider) return;
 
@@ -71,7 +91,22 @@ public abstract class Entity : MonoBehaviour, IInteractable
         if (entity == null) return;
         if (collision.collider != entity.hitboxCollider) return;
 
-        entity.EntityHealth -= this.damage * Time.deltaTime;
+        changeHealth(-this.damage);
+
+        Vector2 forceDirection = collision.transform.position - transform.position;
+
+        collision.collider.GetComponent<Rigidbody2D>().AddForce(forceDirection.normalized * 2f, ForceMode2D.Impulse);
+        collision.otherCollider.GetComponent<Rigidbody2D>().AddForce(forceDirection.normalized * -2f, ForceMode2D.Impulse);
+    }
+
+    public virtual void changeHealth(float health)
+    {
+        EntityCurrentHealth -= this.damage;
+
+        if(EntityCurrentHealth <= 0)
+        {
+            Destroy(this);
+        }
     }
 
 }
