@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26dc392ed279dd74fb48479b0ff896bb, type: 3}
+  m_Name: ewfwf
+  m_EditorClassIdentifier: Assembly-CSharp::FishProfile
+  segments:
+  - length: 0.06830594
+    height: 0.26749992
+    lateralBend: 8
+  - length: 0.0971477
+    height: 0.28297415
+    lateralBend: 13.285714
+  - length: 0.09545804
+    height: 0.30551258
+    lateralBend: 18.571428
+  - length: 0.09308979
+    height: 0.33203727
+    lateralBend: 23.857143
+  - length: 0.09945507
+    height: 0.3741405
+    lateralBend: 29.142859
+  - length: 0.124725424
+    height: 0.39998397
+    lateralBend: 34.428574
+  - length: 0.15296876
+    height: 0.36688948
+    lateralBend: 39.714287
+  - length: 0.111629896
+    height: 0.28509444
+    lateralBend: 45
+  fins: []
+  followSpeed: 0.15
+  solverIterations: 5
