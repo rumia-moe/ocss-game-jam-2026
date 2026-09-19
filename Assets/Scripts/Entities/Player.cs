@@ -19,8 +19,9 @@ public class Player : Entity
 
     public TextMeshProUGUI evolutionText;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         healthUI.DrawHearts((int)EntityCurrentHealth, (int)EntityMaxHealth);
     }
 
