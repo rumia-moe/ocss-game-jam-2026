@@ -82,7 +82,7 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
     public virtual void Interact() { }
 
-    protected virtual void OnCollisionStay2D(Collision2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.otherCollider != this.hitboxCollider) return;
 
@@ -93,9 +93,10 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
         changeHealth(-this.damage);
 
-        Vector2 forceDirection = transform.position - collision.transform.position;
+        Vector2 forceDirection = collision.transform.position - transform.position;
 
-        collision.otherCollider.GetComponent<Rigidbody2D>().AddForce(forceDirection * 2f, ForceMode2D.Impulse);
+        collision.collider.GetComponent<Rigidbody2D>().AddForce(forceDirection.normalized * 2f, ForceMode2D.Impulse);
+        collision.otherCollider.GetComponent<Rigidbody2D>().AddForce(forceDirection.normalized * -2f, ForceMode2D.Impulse);
     }
 
     public virtual void changeHealth(float health)
