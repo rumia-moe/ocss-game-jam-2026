@@ -3,7 +3,7 @@ using UnityEngine;
 public class InsightEntityAttribute : EntityAttribute
 {
 
-    public override string EntityAttributeName { get; set; } = "Insight";
+    public override string EntityAttributeName { get; } = "Insight";
 
     private float insightMultiplier;
 

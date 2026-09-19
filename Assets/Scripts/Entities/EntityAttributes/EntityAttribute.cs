@@ -1,7 +1,7 @@
 public abstract class EntityAttribute
 {
 
-    public virtual string EntityAttributeName { get; set; } = "Entity Attribute";
+    public virtual string EntityAttributeName { get; } = "Entity Attribute";
 
     public abstract void Add(Entity entity);
 

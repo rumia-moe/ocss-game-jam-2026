@@ -21,6 +21,8 @@ public abstract class Entity : MonoBehaviour, IInteractable
     public float movementSpeed = 1f;
     [HideInInspector]
     public float insight = 1f;
+    [HideInInspector]
+    public float damage = 1f;
 
     protected virtual EntityAttribute[] EntityAttributes { get; set; } = { };
     protected virtual EntitySkill[] EntitySkills { get; set; } = { };
@@ -58,5 +60,15 @@ public abstract class Entity : MonoBehaviour, IInteractable
     }
 
     public virtual void Interact() { }
+
+    protected virtual void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.collider != this.hitboxCollider) return;
+        var entity = collision.otherCollider.GetComponent<Entity>();
+        if (entity != null) return;
+        if (collision.otherCollider != entity.hitboxCollider) return;
+        entity.EntityHealth -= this.damage;
+        Debug.Log(entity.gameObject.name + " at " + entity.EntityHealth);
+    }
 
 }

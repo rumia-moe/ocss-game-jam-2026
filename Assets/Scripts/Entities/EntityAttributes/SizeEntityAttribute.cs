@@ -3,7 +3,7 @@ using UnityEngine;
 public class SizeEntityAttribute : EntityAttribute
 {
 
-    public override string EntityAttributeName { get; set; } = "Size";
+    public override string EntityAttributeName { get; } = "Size";
 
     private readonly float size;
 
