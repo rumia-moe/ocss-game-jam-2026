@@ -234,3 +234,4 @@ MonoBehaviour:
   hitboxCollider: {fileID: 5943388725817942389}
   movementSpeed: 1
   insight: 1
+  damage: 1

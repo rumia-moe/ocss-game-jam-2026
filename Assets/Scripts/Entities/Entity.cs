@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
@@ -14,7 +15,8 @@ public abstract class Entity : MonoBehaviour, IInteractable
     public Collider2D hitboxCollider;
 
     public virtual string EntityName { get; set; } = "Entity";
-    public virtual float EntityHealth { get; set; } = 10f;
+    public virtual float EntityMaxHealth { get; set; } = 10f;
+    public virtual float EntityCurrentHealth { get; set; } = 10f;
 
     // Attributes
     [HideInInspector]
@@ -71,7 +73,16 @@ public abstract class Entity : MonoBehaviour, IInteractable
         if (entity == null) return;
         if (collision.collider != entity.hitboxCollider) return;
 
-        entity.EntityHealth -= this.damage * Time.deltaTime;
+        changeHealth(-this.damage * Time.deltaTime);
+    }
+
+    public virtual void changeHealth(float health)
+    {
+        EntityCurrentHealth += this.damage * Time.deltaTime;
+        if(EntityCurrentHealth <= 0)
+        {
+            Destroy(this);
+        }
     }
 
 }
