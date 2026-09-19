@@ -1,6 +1,4 @@
-using UnityEngine;
-
-public abstract class EntitySkill : MonoBehaviour
+public abstract class EntitySkill
 {
 
     public string entitySkillName = "Entity Skill";
