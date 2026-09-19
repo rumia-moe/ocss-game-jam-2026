@@ -33,7 +33,7 @@ public abstract class Entity : MonoBehaviour, IInteractable
     {
 
         rigidbody = GetComponent<Rigidbody2D>();
-        
+
         foreach (var entityAttribute in EntityAttributes)
         {
 
@@ -45,7 +45,8 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
     protected virtual void Update() { }
 
-    protected virtual void UseSkill(EntitySkill skill) {
+    protected virtual void UseSkill(EntitySkill skill)
+    {
 
         if (entitySkillLastUsed.TryGetValue(skill.GetHashCode(), out var lastUsed))
         {
@@ -56,19 +57,21 @@ public abstract class Entity : MonoBehaviour, IInteractable
         entitySkillLastUsed[skill.GetHashCode()] = Time.time;
 
         skill.Use(this, FindAnyObjectByType<Player>());
-    
+
     }
 
     public virtual void Interact() { }
 
     protected virtual void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.collider != this.hitboxCollider) return;
-        var entity = collision.otherCollider.GetComponent<Entity>();
-        if (entity != null) return;
-        if (collision.otherCollider != entity.hitboxCollider) return;
-        entity.EntityHealth -= this.damage;
-        Debug.Log(entity.gameObject.name + " at " + entity.EntityHealth);
+        if (collision.otherCollider != this.hitboxCollider) return;
+
+        var entity = collision.collider.GetComponent<Entity>();
+
+        if (entity == null) return;
+        if (collision.collider != entity.hitboxCollider) return;
+
+        entity.EntityHealth -= this.damage * Time.deltaTime;
     }
 
 }
