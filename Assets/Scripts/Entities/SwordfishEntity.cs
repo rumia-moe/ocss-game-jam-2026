@@ -8,7 +8,7 @@ public class SwordfishEntity : Entity
     [HideInInspector]
     public override string EntityName { get; set; } = "Swordfish";
 
-    protected override EntitySkill[] EntitySkills { get; set; } = { new PierceEntitySkill() };
+    protected override EntitySkill[] EntitySkills { get; set; }
 
     private NavMeshAgent agent;
 
@@ -17,10 +17,12 @@ public class SwordfishEntity : Entity
 
         base.Start();
 
-        agent = GetComponent<NavMeshAgent>();
+        this.agent = GetComponent<NavMeshAgent>();
 
-        agent.updateRotation = false;
-        agent.updateUpAxis = false;
+        this.agent.updateRotation = false;
+        this.agent.updateUpAxis = false;
+
+        this.EntitySkills = new EntitySkill[] { new PierceEntitySkill(this.agent) };
 
     }
 
@@ -31,7 +33,7 @@ public class SwordfishEntity : Entity
 
         base.UseSkill(EntitySkills[0]);
 
-        agent.SetDestination(FindAnyObjectByType<Player>().transform.position);
+        this.agent.SetDestination(FindAnyObjectByType<Player>().transform.position);
 
     }
 

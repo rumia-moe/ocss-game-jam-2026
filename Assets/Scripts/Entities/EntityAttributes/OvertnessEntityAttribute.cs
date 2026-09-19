@@ -3,7 +3,7 @@ using UnityEngine;
 public class OvertnessEntityAttribute : EntityAttribute
 {
 
-    public override string EntityAttributeName { get; set; } = "Overtness";
+    public override string EntityAttributeName { get; } = "Overtness";
 
     private readonly float overtnessMultiplier;
 

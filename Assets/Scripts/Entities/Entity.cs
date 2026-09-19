@@ -3,7 +3,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
-public abstract class Entity : MonoBehaviour
+public abstract class Entity : MonoBehaviour, IInteractable
 {
 
     protected Dictionary<int, float> entitySkillLastUsed = new();
@@ -21,15 +21,19 @@ public abstract class Entity : MonoBehaviour
     public float movementSpeed = 1f;
     [HideInInspector]
     public float insight = 1f;
+    [HideInInspector]
+    public float damage = 1f;
 
     protected virtual EntityAttribute[] EntityAttributes { get; set; } = { };
     protected virtual EntitySkill[] EntitySkills { get; set; } = { };
+
+    public Collider2D SelectableCollider => overtnessCollider;
 
     protected virtual void Start()
     {
 
         rigidbody = GetComponent<Rigidbody2D>();
-        
+
         foreach (var entityAttribute in EntityAttributes)
         {
 
@@ -41,7 +45,8 @@ public abstract class Entity : MonoBehaviour
 
     protected virtual void Update() { }
 
-    protected virtual void UseSkill(EntitySkill skill) {
+    protected virtual void UseSkill(EntitySkill skill)
+    {
 
         if (entitySkillLastUsed.TryGetValue(skill.GetHashCode(), out var lastUsed))
         {
@@ -52,7 +57,21 @@ public abstract class Entity : MonoBehaviour
         entitySkillLastUsed[skill.GetHashCode()] = Time.time;
 
         skill.Use(this, FindAnyObjectByType<Player>());
-    
+
+    }
+
+    public virtual void Interact() { }
+
+    protected virtual void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.otherCollider != this.hitboxCollider) return;
+
+        var entity = collision.collider.GetComponent<Entity>();
+
+        if (entity == null) return;
+        if (collision.collider != entity.hitboxCollider) return;
+
+        entity.EntityHealth -= this.damage * Time.deltaTime;
     }
 
 }
