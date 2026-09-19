@@ -77,9 +77,10 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
         changeHealth(-this.damage * Time.deltaTime);
 
-        Vector2 forceDirection = transform.position - collision.transform.position;
+        Vector2 forceDirection = collision.transform.position - transform.position;
 
-        collision.otherCollider.GetComponent<Rigidbody2D>().AddForce(forceDirection * 2f, ForceMode2D.Impulse);
+        collision.collider.GetComponent<Rigidbody2D>().AddForce(forceDirection.normalized * 2f, ForceMode2D.Impulse);
+        collision.otherCollider.GetComponent<Rigidbody2D>().AddForce(forceDirection.normalized * -2f, ForceMode2D.Impulse);
     }
 
     public virtual void changeHealth(float health)
