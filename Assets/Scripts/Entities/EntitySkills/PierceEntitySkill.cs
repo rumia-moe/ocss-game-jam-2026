@@ -3,16 +3,18 @@ using UnityEngine;
 public class PierceEntitySkill : EntitySkill
 {
 
-    public override string EntitySkillName { get; set; } = "Pierce";
+    public override string EntitySkillName { get; } = "Pierce";
+
+    public override float Cooldown { get; } = 3f;
 
     public override void Use(Entity source, Entity target)
     {
 
         var rigidbody = source.GetComponent<Rigidbody2D>();
 
-        var direction = target.transform.position - source.transform.position;
+        Vector2 direction = target.transform.position - source.transform.position;
 
-        rigidbody.AddForce(direction.normalized * 200f);
+        rigidbody.AddForce(direction.normalized * 350f);
 
     }
 
