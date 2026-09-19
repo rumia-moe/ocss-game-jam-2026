@@ -43,6 +43,7 @@ public class PlayerInteractController : MonoBehaviour
         filter = new ContactFilter2D();
         filter.SetLayerMask(LayerMask.GetMask("Default"));
         filter.useLayerMask = true;
+        filter.useTriggers = true;
     }
 
     private void OnDisable()
@@ -70,8 +71,11 @@ public class PlayerInteractController : MonoBehaviour
         {
             Collider2D hit = hits[i];
 
-            if (hit.TryGetComponent<IInteractable>(out var o) && !hit.TryGetComponent<Player>(out player))
+            
+
+            if (hit.TryGetComponent<IInteractable>(out var o) && hit.GetComponent<Player>() == null)
             {
+                if (o.SelectableCollider != hit) continue;
                 interactables.Add(hit);
             }
         }
