@@ -3,7 +3,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
-public abstract class Entity : MonoBehaviour
+public abstract class Entity : MonoBehaviour, IInteractable
 {
 
     protected Dictionary<int, float> entitySkillLastUsed = new();
@@ -24,6 +24,8 @@ public abstract class Entity : MonoBehaviour
 
     protected virtual EntityAttribute[] EntityAttributes { get; set; } = { };
     protected virtual EntitySkill[] EntitySkills { get; set; } = { };
+
+    public Collider2D SelectableCollider => overtnessCollider;
 
     protected virtual void Start()
     {
@@ -54,5 +56,7 @@ public abstract class Entity : MonoBehaviour
         skill.Use(this, FindAnyObjectByType<Player>());
     
     }
+
+    public virtual void Interact() { }
 
 }
