@@ -80,7 +80,10 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
     }
 
-    public virtual void Interact() { }
+    public virtual void Interact() 
+    {
+        
+    }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
@@ -109,7 +112,13 @@ public abstract class Entity : MonoBehaviour, IInteractable
         }
     }
 
-    public virtual void OnSelect() { }
-    public virtual void OnUnselect() { }
+    public virtual void OnSelect() 
+    { 
+        
+    }
+    public virtual void OnUnselect() 
+    {
+
+    }
 
 }
