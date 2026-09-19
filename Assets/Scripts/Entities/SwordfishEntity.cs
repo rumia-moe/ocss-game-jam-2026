@@ -8,6 +8,8 @@ public class SwordfishEntity : Entity
     [HideInInspector]
     public override string EntityName { get; set; } = "Swordfish";
 
+    public override float EntityMaxHealth { get; set; } = 2f;
+
     protected override EntitySkill[] EntitySkills { get; set; }
 
     private NavMeshAgent agent;

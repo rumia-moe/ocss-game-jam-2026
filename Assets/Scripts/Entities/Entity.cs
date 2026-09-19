@@ -19,9 +19,11 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
     public GameObject indicatorContainer;
 
+    public Transform explosionPrefab;
+
     public virtual string EntityName { get; set; } = "Entity";
     public virtual float EntityMaxHealth { get; set; } = 10f;
-    public virtual float EntityCurrentHealth { get; set; } = 10f;
+    public virtual float EntityCurrentHealth { get; set; }
 
     // Attributes
     [HideInInspector]
@@ -31,7 +33,7 @@ public abstract class Entity : MonoBehaviour, IInteractable
     [HideInInspector]
     public float damage = 1f;
 
-    protected virtual EntityAttribute[] EntityAttributes { get; set; } = { };
+    public virtual List<EntityAttribute> EntityAttributes { get; set; } = new List<EntityAttribute>{ };
     protected virtual EntitySkill[] EntitySkills { get; set; } = { };
 
     public Collider2D SelectableCollider => overtnessCollider;
@@ -41,6 +43,11 @@ public abstract class Entity : MonoBehaviour, IInteractable
     private float oceanBoundary = 22;
 
     private InfoHandler infoHandler;
+
+    protected virtual void Awake()
+    {
+        this.EntityCurrentHealth = this.EntityMaxHealth;
+    }
 
     protected virtual void Start()
     {
@@ -117,7 +124,9 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
         if(EntityCurrentHealth <= 0)
         {
-            Destroy(this);
+            FindAnyObjectByType<Player>().evolutionPoints += this.EntityMaxHealth;
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
     }
 
