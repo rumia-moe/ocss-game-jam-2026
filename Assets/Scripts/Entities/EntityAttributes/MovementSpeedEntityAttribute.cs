@@ -2,7 +2,9 @@
 public class MovementSpeedEntityAttribute : EntityAttribute
 {
 
-    private float movementSpeed;
+    public override string EntityAttributeName { get; set; } = "Movement Speed";
+
+    private readonly float movementSpeed;
 
     public MovementSpeedEntityAttribute(float movementSpeed)
     {
