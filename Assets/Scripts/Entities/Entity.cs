@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VectorGraphics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -35,10 +36,14 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
     private float oceanBoundary = 22;
 
+    private InfoHandler infoHandler;
+
     protected virtual void Start()
     {
 
         rigidbody = GetComponent<Rigidbody2D>();
+
+        infoHandler = GameObject.FindAnyObjectByType<Player>().GetComponent<InfoHandler>();
 
         foreach (var entityAttribute in EntityAttributes)
         {
@@ -82,7 +87,7 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
     public virtual void Interact() 
     {
-        
+        infoHandler.ChangeInfo(this);
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
