@@ -507,6 +507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SwordfishEntity
   overtnessCollider: {fileID: 7846070881756729950}
   hitboxCollider: {fileID: 5943388725817942389}
+  explosionPrefab: {fileID: 6109236595777097787, guid: 42c2166916c964c418558dfc1ad1b111, type: 3}
   movementSpeed: 1
   insight: 1
   damage: 1
