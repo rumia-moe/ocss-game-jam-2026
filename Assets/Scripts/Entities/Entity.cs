@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VectorGraphics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -16,9 +17,11 @@ public abstract class Entity : MonoBehaviour, IInteractable
     public Collider2D overtnessCollider;
     public Collider2D hitboxCollider;
 
+    public Transform explosionPrefab;
+
     public virtual string EntityName { get; set; } = "Entity";
     public virtual float EntityMaxHealth { get; set; } = 10f;
-    public virtual float EntityCurrentHealth { get; set; } = 10f;
+    public virtual float EntityCurrentHealth { get; set; }
 
     // Attributes
     [HideInInspector]
@@ -35,10 +38,19 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
     private float oceanBoundary = 22;
 
+    private InfoHandler infoHandler;
+
+    protected virtual void Awake()
+    {
+        this.EntityCurrentHealth = this.EntityMaxHealth;
+    }
+
     protected virtual void Start()
     {
 
         rigidbody = GetComponent<Rigidbody2D>();
+
+        infoHandler = GameObject.FindAnyObjectByType<Player>().GetComponent<InfoHandler>();
 
         foreach (var entityAttribute in EntityAttributes)
         {
@@ -83,7 +95,7 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
     public virtual void Interact() 
     {
-        
+        infoHandler.ChangeInfo(this);
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
@@ -109,7 +121,9 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
         if(EntityCurrentHealth <= 0)
         {
-            Destroy(this);
+            FindAnyObjectByType<Player>().evolutionPoints += this.EntityMaxHealth;
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
     }
 

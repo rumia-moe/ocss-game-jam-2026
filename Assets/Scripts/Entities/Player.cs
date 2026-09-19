@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,14 +11,17 @@ public class Player : Entity
 
     protected override EntityAttribute[] EntityAttributes { get; set; } = { new MovementSpeedEntityAttribute(5f * 100f) };
 
-    protected float evolutionPoints = 0f;
+    public float evolutionPoints = 0f;
 
     public HeartsHud healthUI;
 
     private Vector2 movement = Vector2.zero;
 
-    private void Awake()
+    public TextMeshProUGUI evolutionText;
+
+    protected override void Awake()
     {
+        base.Awake();
         healthUI.DrawHearts((int)EntityCurrentHealth, (int)EntityMaxHealth);
     }
 
@@ -33,6 +37,12 @@ public class Player : Entity
         base.changeHealth(health);
 
         healthUI.DrawHearts((int)EntityCurrentHealth, (int)EntityMaxHealth);
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        evolutionText.text = this.evolutionPoints + "EP";
     }
 
     protected override void FixedUpdate() {
