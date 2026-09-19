@@ -31,7 +31,7 @@ public abstract class Entity : MonoBehaviour, IInteractable
     [HideInInspector]
     public float damage = 1f;
 
-    protected virtual EntityAttribute[] EntityAttributes { get; set; } = { };
+    public virtual List<EntityAttribute> EntityAttributes { get; set; } = new List<EntityAttribute>{ };
     protected virtual EntitySkill[] EntitySkills { get; set; } = { };
 
     public Collider2D SelectableCollider => overtnessCollider;

@@ -7,6 +7,10 @@ public class Mutation : MonoBehaviour
     public TextMeshProUGUI descText;
     public TextMeshProUGUI costText;
 
+    public Transform explosion;
+    public GameObject parent;
+
+
     private int cost;
     public EntityAttribute[] attributes = new EntityAttribute[3];
 
@@ -55,5 +59,19 @@ public class Mutation : MonoBehaviour
 
             descText.text += $"{attributes[i].EntityAttributeName} : {finalValue:F2}\n";
         }
+    }
+
+    public void Buy()
+    {
+        var player = FindAnyObjectByType<Player>();
+        if (player.evolutionPoints < cost) return;
+        player.evolutionPoints -= cost;
+        foreach (var attribute in attributes)
+        {
+            player.EntityAttributes.Add(attribute);
+            attribute.Add(player);
+        }
+        Instantiate(explosion, parent.transform.position, Quaternion.identity);
+        Destroy(parent);
     }
 }
