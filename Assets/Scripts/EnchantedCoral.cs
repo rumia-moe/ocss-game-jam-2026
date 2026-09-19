@@ -9,7 +9,17 @@ public class EnchantedCoral : MonoBehaviour, IInteractable
     public GameObject canvas;
     
     public void Interact() {
-        canvas.SetActive(!canvas.activeSelf);
+        
+    }
+
+    public void OnSelect()
+    {
+        canvas.SetActive(true);
+    }
+
+    public void OnUnselect()
+    {
+        canvas.SetActive(false);
     }
 
 }
