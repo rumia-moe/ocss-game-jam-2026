@@ -24,14 +24,16 @@ public class PlayerInteractController : MonoBehaviour
 
     private InputAction up;
 
-    private void Start()
+    private ContactFilter2D filter;
+
+    private void OnEnable()
     {
-        interact = playerActionMap.FindAction("interact");
+        interactables = new List<Collider2D>();
+        interact = playerActionMap.FindAction("Interact");
         left = playerActionMap.FindAction("UI_LEFT");
         right = playerActionMap.FindAction("UI_RIGHT");
         up = playerActionMap.FindAction("UI_UP");
         down = playerActionMap.FindAction("UI_DOWN");
-
 
         interact.performed += OnInteract;
 
@@ -40,59 +42,91 @@ public class PlayerInteractController : MonoBehaviour
 
         up.performed += OnUIMoveNegative;
         right.performed += OnUIMoveNegative;
+
+        filter = new ContactFilter2D();
+        filter.SetLayerMask(LayerMask.GetMask("Default"));
+        filter.useLayerMask = true;
     }
 
+    private void OnDisable()
+    {
+        interact.performed -= OnInteract;
+
+        left.performed -= OnUIMovePositive;
+        down.performed -= OnUIMovePositive;
+
+        up.performed -= OnUIMoveNegative;
+        right.performed -= OnUIMoveNegative;
+    }
+
+
+    private Collider2D[] hits = new Collider2D[10];
+
+    
     public void Update()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, player.insight);
+        
+        int hitCount = Physics2D.OverlapCircle(transform.position, player.insight, filter, hits);
+        interactables.Clear();
 
-        interactables = new List<Collider2D>();
-
-        foreach (Collider2D hit in hits)
+        for (int i = 0; i < hitCount; i++)
         {
-            if(hit.TryGetComponent<IInteractable>(out var o) && hit == hit.GetComponent<Entity>().overtnessCollider)
+            Collider2D hit = hits[i];
+            //if(hit.TryGetComponent<IInteractable>(out var o) && hit == o.selectableCollider)
+            //{
+            //    interactables.Add(hit);
+            //}
+            if (hit.TryGetComponent<IInteractable>(out var o))
             {
                 interactables.Add(hit);
             }
         }
 
-        if (currentInteractable != null & interactables.Count > 0 & !(interactables.Contains(currentInteractable)))
+        interactables.Sort((a, b) =>
         {
-            unselect(currentInteractable);
+            Vector3 pa = a.transform.position;
+            Vector3 pb = b.transform.position;
+            int byX = pa.x.CompareTo(pb.x);
+            return byX != 0 ? byX : pa.y.CompareTo(pb.y);
+        });
+
+        if (currentInteractable != null && interactables.Count > 0 && !(interactables.Contains(currentInteractable)))
+        {
+            unselectCurrent();
             currentInteractable = interactables[0];
             index = 0;
         }
 
         if(interactables.Count == 0)
         {
-            unselect(currentInteractable);
+            unselectCurrent();
             currentInteractable = null;
             index = 0;
         }
         
         if(currentInteractable != null)
         {
-            select(currentInteractable);
-        }else if(currentInteractable == null & interactables.Count > 0)
+            selectCurrent();
+        }else if(currentInteractable == null && interactables.Count > 0)
         {
             currentInteractable = interactables[0];
-            select(currentInteractable);
+            selectCurrent();
             index = 0;
         }
 
     }
 
-    public void select(Collider2D collider)
+    public void selectCurrent()
     {
-        if (collider != null)
+        if (currentInteractable != null)
         {
             currentInteractable.GetComponent<SpriteRenderer>().color = Color.black;
         }
     }
 
-    public void unselect(Collider2D collider)
+    public void unselectCurrent()
     {
-        if (collider != null)
+        if (currentInteractable != null)
         {
             currentInteractable.GetComponent<SpriteRenderer>().color = Color.white;
         }
@@ -103,14 +137,17 @@ public class PlayerInteractController : MonoBehaviour
         if (interactables.Count != 0)
         {
             index += 1;
-            unselect(currentInteractable);
-            if (index > interactables.Count)
+            unselectCurrent();
+            if (index >= interactables.Count)
             {
                 index = 0;
             }
-
             currentInteractable = interactables[index];
-            select(currentInteractable);
+            selectCurrent();
+        }
+        else
+        {
+            unselectCurrent();
         }
     }
 
@@ -119,19 +156,25 @@ public class PlayerInteractController : MonoBehaviour
         if (interactables.Count != 0)
         {
             index -= 1;
-            unselect(currentInteractable);
+            unselectCurrent();
             if (index < 0)
             {
                 index = interactables.Count - 1;
             }
             currentInteractable = interactables[index];
-            select(currentInteractable);
+            selectCurrent();
+        }
+        else
+        {
+            unselectCurrent();
         }
     }
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        currentInteractable.GetComponent<IInteractable>().Interact();
+        if (currentInteractable != null) {
+            currentInteractable.GetComponent<IInteractable>().Interact();
+        }
     }
 
     public void OnDrawGizmos()
