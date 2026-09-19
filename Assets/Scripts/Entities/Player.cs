@@ -23,7 +23,6 @@ public class Player : Entity
     {
 
         rigidbody.linearVelocity = context.ReadValue<Vector2>() * movementSpeed;
-
     }
 
     public override void changeHealth(float health)

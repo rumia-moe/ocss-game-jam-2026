@@ -74,11 +74,18 @@ public abstract class Entity : MonoBehaviour, IInteractable
         if (collision.collider != entity.hitboxCollider) return;
 
         changeHealth(-this.damage * Time.deltaTime);
+
+        Vector2 forceDirection = transform.position - collision.transform.position;
+
+        collision.otherCollider.GetComponent<Rigidbody2D>().AddForce(forceDirection * 2f, ForceMode2D.Impulse);
     }
 
     public virtual void changeHealth(float health)
     {
-        EntityCurrentHealth += this.damage * Time.deltaTime;
+        EntityCurrentHealth += this.damage;
+
+        Debug.Log(EntityMaxHealth);
+        Debug.Log(EntityCurrentHealth);
         if(EntityCurrentHealth <= 0)
         {
             Destroy(this);

@@ -68,8 +68,6 @@ public class PlayerInteractController : MonoBehaviour
 
         for (int i = 0; i < hitCount; i++)
         {
-            Debug.Log($"{hits[i].name} layer={LayerMask.LayerToName(hits[i].gameObject.layer)} trigger={hits[i].isTrigger}");
-
             Collider2D hit = hits[i];
 
             if (hit.TryGetComponent<IInteractable>(out var o) && hit.isTrigger)
