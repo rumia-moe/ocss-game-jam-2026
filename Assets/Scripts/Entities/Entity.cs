@@ -52,6 +52,7 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
         }
 
+        randomizModel(0.8f);
     }
 
     protected virtual void Update() { }
@@ -126,4 +127,92 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
     }
 
+     public virtual void randomizModel(float strength = 1f)
+    {
+        var chain = GetComponentInChildren<IKChain>();
+        Debug.Log($"[RandomizeModel] chain found: {chain != null}, profile: {(chain != null ? chain.profile != null : false)}");
+        if (chain == null || chain.profile == null) return;
+
+        chain.profile = Instantiate(chain.profile);
+        FishProfile profile = chain.profile;
+
+        // strength = 0 → no change, strength = 1 → wild variation
+        float s = Mathf.Clamp01(strength);
+
+        // --- Behaviour ---
+        profile.followSpeed = Mathf.Clamp(
+            profile.followSpeed * Random.Range(1f - 0.4f * s, 1f + 0.6f * s),
+            0.04f, 0.4f
+        );
+
+        profile.solverIterations = Mathf.Clamp(
+            profile.solverIterations + Mathf.RoundToInt(Random.Range(-2f * s, 3f * s)),
+            2, 12
+        );
+
+        // --- Global scale jitter ---
+        // Apply one size multiplier to the whole fish so some spawn big, some small.
+        float globalScale = Random.Range(1f - 0.35f * s, 1f + 0.5f * s);
+
+        // --- Segments ---
+        if (profile.segments != null)
+        {
+            for (int i = 0; i < profile.segments.Length; i++)
+            {
+                var seg = profile.segments[i];
+
+                seg.length = Mathf.Max(
+                    seg.length * globalScale * Random.Range(1f - 0.25f * s, 1f + 0.25f * s),
+                    0.03f
+                );
+
+                seg.height = Mathf.Max(
+                    seg.height * globalScale * Random.Range(1f - 0.35f * s, 1f + 0.45f * s),
+                    0.01f
+                );
+
+                seg.lateralBend = Mathf.Clamp(
+                    seg.lateralBend * Random.Range(1f - 0.3f * s, 1f + 0.4f * s),
+                    5f, 70f
+                );
+
+                profile.segments[i] = seg;
+            }
+        }
+
+        // --- Control points ---
+        if (profile.controlPoints != null)
+        {
+            for (int i = 0; i < profile.controlPoints.Length; i++)
+            {
+                var cp = profile.controlPoints[i];
+                cp.x *= globalScale * Random.Range(1f - 0.15f * s, 1f + 0.15f * s);
+                cp.y *= globalScale * Random.Range(1f - 0.4f * s, 1f + 0.5f * s);
+                profile.controlPoints[i] = cp;
+            }
+        }
+
+        // --- Fins ---
+        if (profile.fins != null)
+        {
+            for (int i = 0; i < profile.fins.Length; i++)
+            {
+                var fin = profile.fins[i];
+
+                fin.size = new Vector2(
+                    Mathf.Max(fin.size.x * globalScale * Random.Range(1f - 0.4f * s, 1f + 0.6f * s), 0.02f),
+                    Mathf.Max(fin.size.y * globalScale * Random.Range(1f - 0.4f * s, 1f + 0.6f * s), 0.02f)
+                );
+
+                fin.offset = new Vector2(
+                    fin.offset.x + Random.Range(-0.05f * s, 0.05f * s),
+                    fin.offset.y + Random.Range(-0.03f * s, 0.03f * s)
+                );
+
+                profile.fins[i] = fin;
+            }
+        }
+        Debug.Log($"[RandomizeModel] First CP after randomize: {profile.controlPoints[0]}, globalScale: {globalScale}");    
+        chain.Init();
+    }
 }

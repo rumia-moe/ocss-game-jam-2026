@@ -212,7 +212,7 @@ public class IKChainRenderer : MonoBehaviour
                 // rotating across a sharp bend.
                 if (Vector3.Dot(previousPerp, perp) < 0f)
                     perp = -perp;
-}
+            }
 
                 // IMPORTANT:
                 // Do not Catmull-Rom the height.
@@ -726,3 +726,4 @@ public class IKChainRenderer : MonoBehaviour
         _mesh.RecalculateBounds();
     }
 }
+
