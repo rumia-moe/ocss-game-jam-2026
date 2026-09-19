@@ -109,4 +109,7 @@ public abstract class Entity : MonoBehaviour, IInteractable
         }
     }
 
+    public virtual void OnSelect() { }
+    public virtual void OnUnselect() { }
+
 }

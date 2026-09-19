@@ -110,6 +110,7 @@ public class PlayerInteractController : MonoBehaviour
     {
         if (currentInteractable != null)
         {
+            currentInteractable.GetComponent<IInteractable>().OnSelect();
             currentInteractable.GetComponent<SpriteRenderer>().color = Color.black;
         }
     }
@@ -118,6 +119,7 @@ public class PlayerInteractController : MonoBehaviour
     {
         if (currentInteractable != null)
         {
+            currentInteractable.GetComponent<IInteractable>().OnUnselect();
             currentInteractable.GetComponent<SpriteRenderer>().color = Color.white;
         }
     }
