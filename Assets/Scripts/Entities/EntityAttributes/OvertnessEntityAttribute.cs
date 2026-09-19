@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class OvertnessEntityAttribute : EntityAttribute
 {
 
@@ -15,15 +17,15 @@ public class OvertnessEntityAttribute : EntityAttribute
     public override void Add(Entity entity)
     {
 
-        entity.overtnessRating *= this.overtnessMultiplier;
+        entity.GetComponent<CircleCollider2D>().radius *= this.overtnessMultiplier;
 
     }
 
     public override void Remove(Entity entity)
     {
 
-        entity.overtnessRating /= this.overtnessMultiplier;
-        
+        entity.GetComponent<CircleCollider2D>().radius /= this.overtnessMultiplier;
+
     }
 
 }

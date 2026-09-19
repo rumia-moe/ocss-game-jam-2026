@@ -17,14 +17,14 @@ public class InsightEntityAttribute : EntityAttribute
     public override void Add(Entity entity)
     {
 
-        entity.GetComponent<Collider2D>();
+        entity.insight *= this.insightMultiplier;
 
     }
 
     public override void Remove(Entity entity)
     {
-        
 
+        entity.insight /= this.insightMultiplier;
 
     }
 
