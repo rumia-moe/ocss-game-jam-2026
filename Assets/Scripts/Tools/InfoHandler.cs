@@ -8,6 +8,7 @@ public class InfoHandler : MonoBehaviour
     public TextMeshProUGUI attackValue;
     public TextMeshProUGUI insightValue;
     public TextMeshProUGUI agilityValue;
+    public TextMeshProUGUI abilityList;
 
 
     public void ChangeInfo(Entity muse)

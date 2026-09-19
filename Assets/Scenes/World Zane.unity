@@ -4062,11 +4062,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
---- !u!1 &1828785488 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8229641745268976153, guid: e6508f480766cbc4b988fb909370903b, type: 3}
-  m_PrefabInstance: {fileID: 1971425053}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1882016615
 GameObject:
   m_ObjectHideFlags: 0
@@ -4711,6 +4706,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1934435588}
   m_CullTransparentMesh: 1
+--- !u!1 &1934854778 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1551442315626376790, guid: e6508f480766cbc4b988fb909370903b, type: 3}
+  m_PrefabInstance: {fileID: 1971425053}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1971425053
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4852,9 +4852,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1394688010}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8229641745268976153, guid: e6508f480766cbc4b988fb909370903b, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 1551442315626376790, guid: e6508f480766cbc4b988fb909370903b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1971425058}
+      addedObject: {fileID: 1971425066}
   m_SourcePrefab: {fileID: 100100000, guid: e6508f480766cbc4b988fb909370903b, type: 3}
 --- !u!4 &1971425054 stripped
 Transform:
@@ -4866,18 +4866,19 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5300399781073334547, guid: e6508f480766cbc4b988fb909370903b, type: 3}
   m_PrefabInstance: {fileID: 1971425053}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1971425058
+--- !u!114 &1971425066
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1828785488}
+  m_GameObject: {fileID: 1934854778}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6bc78f890de4f4541892225c72bedc29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  title: {fileID: 2147146400}
   healthValue: {fileID: 8335814}
   attackValue: {fileID: 1934435590}
   insightValue: {fileID: 720750325}
