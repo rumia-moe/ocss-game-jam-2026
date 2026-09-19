@@ -108,6 +108,7 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
         if(EntityCurrentHealth <= 0)
         {
+            FindAnyObjectByType<Player>().evolutionPoints += this.EntityMaxHealth;
             Destroy(this);
         }
     }
