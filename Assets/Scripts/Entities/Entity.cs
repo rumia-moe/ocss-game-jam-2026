@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(Collider2D))]
 public abstract class Entity : MonoBehaviour
 {
 
@@ -15,12 +16,12 @@ public abstract class Entity : MonoBehaviour
     [HideInInspector]
     public float movementSpeed = 1f;
     [HideInInspector]
-    public float overtnessRating = 1f;
+    public float insight = 1f;
 
     protected virtual EntityAttribute[] EntityAttributes { get; set; } = { };
     protected virtual EntitySkill[] EntitySkills { get; set; } = { };
 
-    private void Start()
+    protected virtual void Start()
     {
 
         rigidbody = GetComponent<Rigidbody2D>();
@@ -33,5 +34,7 @@ public abstract class Entity : MonoBehaviour
         }
 
     }
+
+    protected virtual void Update() { }
 
 }
