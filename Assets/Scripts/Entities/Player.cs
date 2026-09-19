@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,7 +10,7 @@ public class Player : Entity
     [HideInInspector]
     public override string EntityName { get; set; } = "Player";
 
-    protected override EntityAttribute[] EntityAttributes { get; set; } = { new MovementSpeedEntityAttribute(5f * 100f) };
+    public override List<EntityAttribute> EntityAttributes { get; set; } = new List<EntityAttribute> { new MovementSpeedEntityAttribute(5f * 100f) };
 
     public float evolutionPoints = 0f;
 
