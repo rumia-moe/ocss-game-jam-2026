@@ -17,7 +17,7 @@ public class IKChain : MonoBehaviour
 
     public void Start()
     {
-        Init();
+            
     }
 
     public void Init()
