@@ -17,6 +17,8 @@ public abstract class Entity : MonoBehaviour, IInteractable
     public Collider2D overtnessCollider;
     public Collider2D hitboxCollider;
 
+    public GameObject indicatorContainer;
+
     public virtual string EntityName { get; set; } = "Entity";
     public virtual float EntityMaxHealth { get; set; } = 10f;
     public virtual float EntityCurrentHealth { get; set; } = 10f;
@@ -33,6 +35,8 @@ public abstract class Entity : MonoBehaviour, IInteractable
     protected virtual EntitySkill[] EntitySkills { get; set; } = { };
 
     public Collider2D SelectableCollider => overtnessCollider;
+
+    public GameObject Indicator => indicatorContainer;
 
     private float oceanBoundary = 22;
 
@@ -62,7 +66,6 @@ public abstract class Entity : MonoBehaviour, IInteractable
         if(transform.position.y >= oceanBoundary)
         {
             rigidbody.gravityScale = 2;
-            
         }
         else
         {
@@ -119,12 +122,12 @@ public abstract class Entity : MonoBehaviour, IInteractable
     }
 
     public virtual void OnSelect() 
-    { 
-        
+    {
+        Indicator.SetActive(true);
     }
     public virtual void OnUnselect() 
     {
-
+        Indicator.SetActive(false);
     }
 
      public virtual void randomizModel(float strength = 1f)
