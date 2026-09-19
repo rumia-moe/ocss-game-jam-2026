@@ -4,4 +4,6 @@ public interface IInteractable
 {
     Collider2D SelectableCollider { get; }
     void Interact();
+    void OnSelect();
+    void OnUnselect();
 }
