@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26dc392ed279dd74fb48479b0ff896bb, type: 3}
+  m_Name: grew
+  m_EditorClassIdentifier: Assembly-CSharp::FishProfile
+  segments:
+  - length: 0.070770755
+    height: 0.017499924
+    lateralBend: 8
+  - length: 0.1056649
+    height: 0.120712765
+    lateralBend: 13.285714
+  - length: 0.13833857
+    height: 0.2582029
+    lateralBend: 18.571428
+  - length: 0.17345615
+    height: 0.3527293
+    lateralBend: 23.857143
+  - length: 0.23341204
+    height: 0.41781232
+    lateralBend: 29.142859
+  - length: 0.36370185
+    height: 0.43191886
+    lateralBend: 34.428574
+  - length: 0.49323997
+    height: 0.33953124
+    lateralBend: 39.714287
+  - length: 0.36534458
+    height: 0.14992195
+    lateralBend: 45
+  fins: []
+  followSpeed: 0.15
+  solverIterations: 5

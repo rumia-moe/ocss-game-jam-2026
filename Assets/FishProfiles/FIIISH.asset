@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26dc392ed279dd74fb48479b0ff896bb, type: 3}
+  m_Name: FIIISH
+  m_EditorClassIdentifier: Assembly-CSharp::FishProfile
+  controlPoints:
+  - {x: 4.6850004, y: 0.023749923}
+  - {x: 4.5299997, y: 0.3437499}
+  - {x: 4.875, y: 0.14375}
+  - {x: 5.21, y: 0.19874993}
+  - {x: 5.575, y: 0.0012500763}
+  segments:
+  - length: 0.19892137
+    height: 0.047499847
+    lateralBend: 8
+  - length: 0.1577507
+    height: 0.39249983
+    lateralBend: 13.285714
+  - length: 0.16459118
+    height: 0.6874998
+    lateralBend: 18.571428
+  - length: 0.23419389
+    height: 0.520625
+    lateralBend: 23.857143
+  - length: 0.16848388
+    height: 0.2875
+    lateralBend: 29.142859
+  - length: 0.17100106
+    height: 0.3421874
+    lateralBend: 34.428574
+  - length: 0.2246584
+    height: 0.39749986
+    lateralBend: 39.714287
+  - length: 0.19116706
+    height: 0.20687501
+    lateralBend: 45
+  fins: []
+  followSpeed: 0.15
+  solverIterations: 5
