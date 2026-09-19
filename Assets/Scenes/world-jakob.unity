@@ -208,7 +208,7 @@ SpriteRenderer:
   m_Size: {x: 5, y: 1.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
 --- !u!1 &207889346
@@ -539,7 +539,7 @@ SpriteRenderer:
   m_Size: {x: 5, y: 1.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
 --- !u!1 &324410088
@@ -684,7 +684,7 @@ SpriteRenderer:
   m_Size: {x: 5, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
 --- !u!1 &384812280
@@ -811,7 +811,7 @@ MonoBehaviour:
   m_BuildHeightMesh: 0
   m_MinRegionArea: 0
   m_HideEditorLogs: 0
-  m_NavMeshData: {fileID: 23800000, guid: 5bf53bf142f916e408fbef463d966d40, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: cbf9602d639e771a896bd000fbb50140, type: 2}
 --- !u!1 &775210005
 GameObject:
   m_ObjectHideFlags: 0
@@ -1136,7 +1136,7 @@ SpriteRenderer:
   m_Size: {x: 5, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
 --- !u!1 &972513430
@@ -1316,7 +1316,7 @@ SpriteRenderer:
   m_Size: {x: 5, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
 --- !u!1 &1418423599
@@ -1374,6 +1374,7 @@ MonoBehaviour:
   movementSpeed: 1
   insight: 1
   damage: 1
+  healthUI: {fileID: 0}
 --- !u!114 &1418423602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1900,7 +1901,7 @@ SpriteRenderer:
   m_Size: {x: 5, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
 --- !u!1 &1558184023
@@ -1992,7 +1993,7 @@ SpriteRenderer:
   m_Size: {x: 5, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
 --- !u!1 &1799664419
@@ -2084,7 +2085,7 @@ SpriteRenderer:
   m_Size: {x: 5, y: 1.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
 --- !u!1 &1882016615
@@ -2346,7 +2347,7 @@ SpriteRenderer:
   m_Size: {x: 5, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
 --- !u!1 &1890170646
