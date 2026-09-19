@@ -17,21 +17,13 @@ public class IKChain : MonoBehaviour
 
     public void Start()
     {
-            
+
     }
 
     public void Init()
     {
         if (profile == null)
             return;
-
-        // ------------------------------------------------------------
-        // IMPORTANT:
-        // If the profile contains the original painter control points,
-        // use THOSE as the IK chain points.
-        //
-        // Do not reconstruct the shape from profile.segments.
-        // ------------------------------------------------------------
 
         if (profile.controlPoints != null &&
             profile.controlPoints.Length >= 2)
@@ -40,13 +32,18 @@ public class IKChain : MonoBehaviour
         }
         else
         {
-            // Backwards compatibility for old profiles.
             InitFromSegments();
         }
 
         if (points != null && points.Length > 0)
-            _smoothTip = points[points.Length - 1];
+        {
+            _smoothTip =
+                target != null
+                    ? target.position
+                    : points[points.Length - 1];
+        }
     }
+    
 
     void InitFromControlPoints()
     {
@@ -160,92 +157,29 @@ public class IKChain : MonoBehaviour
 
     void Update()
     {
-        if (target == null ||
-            points == null ||
-            points.Length < 2)
-            return;
+      if (target == null || points == null || points.Length < 2)
+        return;
 
-        _smoothTip = Vector3.Lerp(
-            _smoothTip,
-            target.position,
-            profile.followSpeed
-        );
-
-        SolveFABRIK(_smoothTip);
+        SolveFABRIK(target.position);
     }
 
     void SolveFABRIK(Vector3 tipTarget)
     {
-        if (points == null ||
-            points.Length < 2 ||
-            _segLengths == null)
-            return;
+        if (points == null || points.Length < 2 || _segLengths == null)
+        return;
 
         int last = points.Length - 1;
 
-        // The original implementation mixed up root and tip.
-        //
-        // Here:
-        // points[0]     = root
-        // points[last]  = head/tip
-        //
-        // The target drives the LAST point.
+        // Forward pass only — tip is pinned, root is completely free
+        points[last] = tipTarget;
 
-        Vector3 fixedRoot = points[0];
-
-        for (int iter = 0;
-             iter < profile.solverIterations;
-             iter++)
+        for (int i = last - 1; i >= 0; i--)
         {
-            // --------------------------------------------------------
-            // Forward pass:
-            // put the tip on the target.
-            // --------------------------------------------------------
-
-            points[last] = tipTarget;
-
-            for (int i = last - 1; i >= 0; i--)
-            {
-                Vector3 delta = points[i] - points[i + 1];
-
-                Vector3 dir;
-
-                if (delta.sqrMagnitude > 0.000001f)
-                    dir = delta.normalized;
-                else
-                    dir = Vector3.left;
-
-                points[i] =
-                    points[i + 1] +
-                    dir * _segLengths[i];
-            }
-
-            // --------------------------------------------------------
-            // Backward pass:
-            // restore fixed root.
-            // --------------------------------------------------------
-
-            if (rootIsFixed)
-                points[0] = fixedRoot;
-
-            for (int i = 1; i <= last; i++)
-            {
-                Vector3 delta = points[i] - points[i - 1];
-
-                Vector3 dir;
-
-                if (delta.sqrMagnitude > 0.000001f)
-                    dir = delta.normalized;
-                else
-                    dir = Vector3.right;
-
-                points[i] =
-                    points[i - 1] +
-                    dir * _segLengths[i - 1];
-            }
+            Vector3 delta = points[i] - points[i + 1];
+            Vector3 dir = delta.sqrMagnitude > 0.000001f ? delta.normalized : Vector3.left;
+            points[i] = points[i + 1] + dir * _segLengths[i];
         }
     }
-
     public Vector3 GetSegmentDirection(int i)
     {
         if (points == null ||

@@ -145,7 +145,7 @@ public class IKChainRenderer : MonoBehaviour
         public float segT;
     }
 
-    SpineRing[] BuildSpine()
+   SpineRing[] BuildSpine()
     {
         Vector3[] pts = _chain.points;
         float[] hts = _chain.heights;
@@ -153,172 +153,88 @@ public class IKChainRenderer : MonoBehaviour
         int sourceCount = pts.Length;
         int segments = sourceCount - 1;
 
-        int sub = Mathf.Max(1,subdivisionsPerSegment);
-
+        int sub = Mathf.Max(1, subdivisionsPerSegment);
         int sampleCount = segments * sub + 1;
-
-        SpineRing[] spine =
-            new SpineRing[sampleCount];
+        SpineRing[] spine = new SpineRing[sampleCount];
 
         int index = 0;
 
         for (int seg = 0; seg < segments; seg++)
         {
-            int i0 = Mathf.Max(seg - 1,0);
-
+            int i0 = Mathf.Max(seg - 1, 0);
             int i1 = seg;
-
             int i2 = seg + 1;
-
-            int i3 = Mathf.Min(seg + 2,sourceCount - 1);
+            int i3 = Mathf.Min(seg + 2, sourceCount - 1);
 
             for (int s = 0; s < sub; s++)
             {
-                float t =
-                    s / (float)sub;
+                float t = s / (float)sub;
 
-                Vector3 pos =
-                    Vector3.Lerp(
-                        pts[i1],
-                        pts[i2],
-                        t
-                    );
+                // Convert world space points to local space
+                Vector3 p0 = transform.InverseTransformPoint(pts[i0]);
+                Vector3 p1 = transform.InverseTransformPoint(pts[i1]);
+                Vector3 p2 = transform.InverseTransformPoint(pts[i2]);
+                Vector3 p3 = transform.InverseTransformPoint(pts[i3]);
 
+                Vector3 pos = Vector3.Lerp(p1, p2, t);
                 pos.z = 0f;
 
+                Vector3 tan = CRTan(p0, p1, p2, p3, t);
 
-                Vector3 tan =
-                CRTan(
-                    pts[i0],
-                    pts[i1],
-                    pts[i2],
-                    pts[i3],
-                    t
-                );
+                Vector3 perp = new Vector3(-tan.y, tan.x, 0f);
 
-            Vector3 perp =
-                new Vector3(
-                    -tan.y,
-                    tan.x,
-                    0f
-                );
+                if (index > 0)
+                {
+                    Vector3 previousPerp = spine[index - 1].perp;
+                    if (Vector3.Dot(previousPerp, perp) < 0f)
+                        perp = -perp;
+                }
 
-            if (index > 0)
-            {
-                Vector3 previousPerp =
-                    spine[index - 1].perp;
+                float height = Mathf.Lerp(hts[i1], hts[i2], t);
 
-                // Keep the perpendicular from suddenly
-                // rotating across a sharp bend.
-                if (Vector3.Dot(previousPerp, perp) < 0f)
-                    perp = -perp;
-            }
-
-                // IMPORTANT:
-                // Do not Catmull-Rom the height.
-                //
-                // This prevents the taper from overshooting
-                // when the fish turns.
-                float height =
-                    Mathf.Lerp(
-                        hts[i1],
-                        hts[i2],
-                        t
-                    );
-
-                spine[index++] =
-                    new SpineRing
-                    {
-                        pos = pos,
-                        tan = tan,
-                        perp = perp,
-                        height =
-                            Mathf.Max(
-                                height,
-                                0.001f
-                            ),
-                        segT =
-                            (seg + t) /
-                            segments
-                    };
+                spine[index++] = new SpineRing
+                {
+                    pos = pos,
+                    tan = tan,
+                    perp = perp,
+                    height = Mathf.Max(height, 0.001f),
+                    segT = (seg + t) / segments
+                };
             }
         }
 
-        // ============================================================
-        // Exact final control point.
-        // ============================================================
+        // Final point
+        Vector3 lastP1 = transform.InverseTransformPoint(pts[sourceCount - 2]);
+        Vector3 lastP2 = transform.InverseTransformPoint(pts[sourceCount - 1]);
 
-        Vector3 lastTan =
-            pts[sourceCount - 1] -
-            pts[sourceCount - 2];
-
+        Vector3 lastTan = lastP2 - lastP1;
         lastTan.z = 0f;
-
-        if (lastTan.sqrMagnitude < 0.000001f)
-            lastTan = Vector3.right;
-
+        if (lastTan.sqrMagnitude < 0.000001f) lastTan = Vector3.right;
         lastTan.Normalize();
 
-        Vector3 lastPerp =
-            new Vector3(
-                -lastTan.y,
-                lastTan.x,
-                0f
-            );
+        Vector3 lastPerp = new Vector3(-lastTan.y, lastTan.x, 0f);
 
-        spine[index] =
-            new SpineRing
-            {
-                pos =
-                    new Vector3(
-                        pts[sourceCount - 1].x,
-                        pts[sourceCount - 1].y,
-                        0f
-                    ),
+        spine[index] = new SpineRing
+        {
+            pos = new Vector3(lastP2.x, lastP2.y, 0f),
+            tan = lastTan,
+            perp = lastPerp,
+            height = Mathf.Max(hts[sourceCount - 1], 0.001f),
+            segT = 1f
+        };
 
-                tan = lastTan,
-
-                perp = lastPerp,
-
-                height =
-                    Mathf.Max(
-                        hts[sourceCount - 1],
-                        0.001f
-                    ),
-
-                segT = 1f
-            };
-
-        // ============================================================
-        // Arc length.
-        // ============================================================
-
+        // Arc length
         float arc = 0f;
-
         spine[0].arcU = 0f;
-
         for (int i = 1; i < spine.Length; i++)
         {
-            arc +=
-                Vector3.Distance(
-                    spine[i - 1].pos,
-                    spine[i].pos
-                );
-
+            arc += Vector3.Distance(spine[i - 1].pos, spine[i].pos);
             spine[i].arcU = arc;
         }
 
-        float totalArc =
-            Mathf.Max(
-                arc,
-                0.0001f
-            );
-
+        float totalArc = Mathf.Max(arc, 0.0001f);
         for (int i = 0; i < spine.Length; i++)
-        {
-            spine[i].arcU /=
-                totalArc;
-        }
+            spine[i].arcU /= totalArc;
 
         return spine;
     }
