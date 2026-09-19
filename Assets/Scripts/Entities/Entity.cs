@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using static UnityEngine.EventSystems.EventTrigger;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -31,6 +33,8 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
     public Collider2D SelectableCollider => overtnessCollider;
 
+    private float oceanBoundary = 22;
+
     protected virtual void Start()
     {
 
@@ -47,7 +51,19 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
     protected virtual void Update() { }
 
-    protected virtual void FixedUpdate() { }
+    protected virtual void FixedUpdate() { 
+    
+        if(transform.position.y >= oceanBoundary)
+        {
+            rigidbody.gravityScale = 2;
+            
+        }
+        else
+        {
+            rigidbody.gravityScale = 0;
+        }
+    
+    }
 
     protected virtual void UseSkill(EntitySkill skill)
     {

@@ -70,7 +70,7 @@ public class PlayerInteractController : MonoBehaviour
         {
             Collider2D hit = hits[i];
 
-            if (hit.TryGetComponent<IInteractable>(out var o) && hit.isTrigger)
+            if (hit.TryGetComponent<IInteractable>(out var o) && !hit.TryGetComponent<Player>(out player))
             {
                 interactables.Add(hit);
             }
