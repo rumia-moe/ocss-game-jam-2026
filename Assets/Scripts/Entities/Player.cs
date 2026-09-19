@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 public class Player : Entity
 {
 
+    public override string EntityName { get; set; } = "Player";
+
     protected override EntityAttribute[] EntityAttributes { get; set; } = { new MovementSpeedEntityAttribute(5f) };
 
     protected float evolutionPoints = 0f;
