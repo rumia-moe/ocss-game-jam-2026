@@ -1,6 +1,6 @@
 public abstract class EntitySkill
 {
 
-    public string entitySkillName = "Entity Skill";
+    public virtual string EntitySkillName { get; set; } = "Entity Skill";
 
 }

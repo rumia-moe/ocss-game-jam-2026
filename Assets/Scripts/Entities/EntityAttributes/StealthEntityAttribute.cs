@@ -1,0 +1,29 @@
+public class OvertnessEntityAttribute : EntityAttribute
+{
+
+    public override string EntityAttributeName { get; set; } = "Overtness";
+
+    private readonly float overtnessMultiplier;
+
+    public OvertnessEntityAttribute(float overtnessMultiplier)
+    {
+
+        this.overtnessMultiplier = overtnessMultiplier;
+
+    }
+
+    public override void Add(Entity entity)
+    {
+
+        entity.overtnessRating *= this.overtnessMultiplier;
+
+    }
+
+    public override void Remove(Entity entity)
+    {
+
+        entity.overtnessRating /= this.overtnessMultiplier;
+        
+    }
+
+}

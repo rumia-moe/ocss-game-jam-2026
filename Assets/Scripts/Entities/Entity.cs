@@ -14,6 +14,8 @@ public abstract class Entity : MonoBehaviour
     // Attributes
     [HideInInspector]
     public float movementSpeed = 1f;
+    [HideInInspector]
+    public float overtnessRating = 1f;
 
     protected virtual EntityAttribute[] EntityAttributes { get; set; } = { };
     protected virtual EntitySkill[] EntitySkills { get; set; } = { };
