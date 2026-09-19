@@ -25,6 +25,15 @@ public class Player : Entity
         rigidbody.linearVelocity = context.ReadValue<Vector2>() * movementSpeed;
     }
 
+    protected virtual void OnCollisionStay2D(Collision2D collision)
+    {
+        base.OnCollisionStay2D(collision);
+
+        changeHealth(-this.damage * Time.deltaTime);
+
+        Vector2 forceDirection = transform.position - collision.transform.position;
+    }
+
     public override void changeHealth(float health)
     {
         base.changeHealth(health);
