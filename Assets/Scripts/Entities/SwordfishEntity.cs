@@ -5,6 +5,7 @@ using UnityEngine.AI;
 public class SwordfishEntity : Entity
 {
 
+    [HideInInspector]
     public override string EntityName { get; set; } = "Swordfish";
 
     protected override EntitySkill[] EntitySkills { get; set; } = { new PierceEntitySkill() };

@@ -5,8 +5,11 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/world-jakob.unity
+    guid: 5584361f8850ebc45b1584bed7a7fda8
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 74e5fac17474fa24fa2114f28051a5e3, type: 3}

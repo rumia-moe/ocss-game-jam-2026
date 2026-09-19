@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
@@ -11,6 +9,9 @@ public abstract class Entity : MonoBehaviour
     protected Dictionary<int, float> entitySkillLastUsed = new();
 
     protected Rigidbody2D rigidbody;
+
+    public Collider2D overtnessCollider;
+    public Collider2D hitboxCollider;
 
     public virtual string EntityName { get; set; } = "Entity";
     public virtual float EntityHealth { get; set; } = 10f;
