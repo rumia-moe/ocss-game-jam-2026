@@ -221,7 +221,27 @@ public abstract class Entity : MonoBehaviour, IInteractable
                 profile.fins[i] = fin;
             }
         }
+
+        profile.bodyColor = new Color(
+            Mathf.Clamp01(profile.bodyColor.r * Random.Range(0.7f, 1.3f)),
+            Mathf.Clamp01(profile.bodyColor.g * Random.Range(0.7f, 1.3f)),
+            Mathf.Clamp01(profile.bodyColor.b * Random.Range(0.7f, 1.3f)),
+            1f
+        );
+
         Debug.Log($"[RandomizeModel] First CP after randomize: {profile.controlPoints[0]}, globalScale: {globalScale}");    
         chain.Init();
+
+        var fishRenderer = chain.GetComponent<IKChainRenderer>();
+        var meshRenderer = chain.GetComponent<MeshRenderer>();
+        if (fishRenderer != null && meshRenderer != null)
+        {
+            Material mat = new Material(fishRenderer.bodyMaterial);
+            mat.SetColor("_Color", profile.bodyColor);
+            
+            // Must set on the MeshRenderer directly, not just bodyMaterial
+            meshRenderer.material = mat;
+            fishRenderer.bodyMaterial = mat;
+        }
     }
 }
