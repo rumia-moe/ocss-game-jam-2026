@@ -13,23 +13,23 @@ MonoBehaviour:
   m_Name: FIIISH
   m_EditorClassIdentifier: Assembly-CSharp::FishProfile
   controlPoints:
-  - {x: 4.6850004, y: 0.023749923}
+  - {x: 4.71875, y: 0.01875}
   - {x: 4.5299997, y: 0.3437499}
   - {x: 4.875, y: 0.14375}
   - {x: 5.21, y: 0.19874993}
   - {x: 5.575, y: 0.0012500763}
   segments:
-  - length: 0.19892137
-    height: 0.047499847
+  - length: 0.20992032
+    height: 0.0375
     lateralBend: 8
-  - length: 0.1577507
-    height: 0.39249983
+  - length: 0.16673827
+    height: 0.38749993
     lateralBend: 13.285714
-  - length: 0.16459118
+  - length: 0.16261679
     height: 0.6874998
     lateralBend: 18.571428
-  - length: 0.23419389
-    height: 0.520625
+  - length: 0.23617995
+    height: 0.5212499
     lateralBend: 23.857143
   - length: 0.16848388
     height: 0.2875
