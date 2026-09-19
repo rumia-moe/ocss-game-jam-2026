@@ -76,11 +76,13 @@ public class PlayerInteractController : MonoBehaviour
             //{
             //    interactables.Add(hit);
             //}
-            if (hit.TryGetComponent<IInteractable>(out var o))
+            if (hit.TryGetComponent<IInteractable>(out var o) && hit == o.SelectableCollider)
             {
                 interactables.Add(hit);
             }
         }
+
+        Debug.Log(interactables.Count);
 
         interactables.Sort((a, b) =>
         {
