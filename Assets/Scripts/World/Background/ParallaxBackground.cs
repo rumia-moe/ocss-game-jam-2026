@@ -2,7 +2,12 @@ using UnityEngine;
 
 public class ParallaxBackgrounds : MonoBehaviour
 {
-    private float length, startPos;
+    private float length;
+
+    private float[] startPos;
+
+    public GameObject[] components;
+
 
     public GameObject camera;
     public float parralaxFactor;
@@ -11,8 +16,12 @@ public class ParallaxBackgrounds : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        startPos = transform.position.x;
-        length = GetComponent<SpriteRenderer>().bounds.size.x;
+        startPos = new float[components.Length];
+        for (int i = 0; i < startPos.Length; i++)
+        {
+            startPos[i] = components[i].transform.position.x;
+        }
+        length = components[0].GetComponent<SpriteRenderer>().bounds.size.x;
     }
 
     // Update is called once per frame
@@ -21,15 +30,21 @@ public class ParallaxBackgrounds : MonoBehaviour
         float temp = camera.transform.position.x * (1 - parralaxFactor);
         float distance = camera.transform.position.x * parralaxFactor;
 
-        transform.position = new Vector3(startPos + distance, transform.position.y, transform.position.z);
-
-        if (temp > startPos + length)
+        for (int i = 0; i < startPos.Length; i++)
         {
-            startPos += length;
+            transform.position = new Vector3(startPos[i] + distance, transform.position.y, transform.position.z);
         }
-        else if (temp < startPos - length)
+
+        for (int i = 0; i < startPos.Length; i++)
         {
-            startPos -= length;
+            if (temp > startPos[i] + length)
+            {
+                startPos[i] += length;
+            }
+            else if (temp < startPos[i] - length)
+            {
+                startPos[i] -= length;
+            }
         }
     }
 }
