@@ -75,7 +75,7 @@ public abstract class Entity : MonoBehaviour, IInteractable
         if (entity == null) return;
         if (collision.collider != entity.hitboxCollider) return;
 
-        changeHealth(-this.damage * Time.deltaTime);
+        changeHealth(-this.damage);
 
         Vector2 forceDirection = transform.position - collision.transform.position;
 
@@ -84,10 +84,8 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
     public virtual void changeHealth(float health)
     {
-        EntityCurrentHealth += this.damage;
+        EntityCurrentHealth -= this.damage;
 
-        Debug.Log(EntityMaxHealth);
-        Debug.Log(EntityCurrentHealth);
         if(EntityCurrentHealth <= 0)
         {
             Destroy(this);
