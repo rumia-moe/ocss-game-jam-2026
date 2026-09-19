@@ -47,6 +47,8 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
     protected virtual void Update() { }
 
+    protected virtual void FixedUpdate() { }
+
     protected virtual void UseSkill(EntitySkill skill)
     {
 
