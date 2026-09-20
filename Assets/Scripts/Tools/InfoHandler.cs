@@ -8,7 +8,7 @@ public class InfoHandler : MonoBehaviour
     public TextMeshProUGUI attackValue;
     public TextMeshProUGUI insightValue;
     public TextMeshProUGUI agilityValue;
-    public TextMeshProUGUI abilityList;
+    public TextMeshProUGUI intellectValue;
 
 
     public void ChangeInfo(Entity muse)
@@ -18,6 +18,7 @@ public class InfoHandler : MonoBehaviour
         attackValue.text = muse.damage.ToString();
         insightValue.text = muse.insight.ToString();
         agilityValue.text = muse.movementSpeed.ToString();
+        intellectValue.text = muse.intelect.ToString(); 
     }
 
 

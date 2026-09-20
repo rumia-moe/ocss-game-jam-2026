@@ -30,8 +30,10 @@ public class Player : Entity
 
     public void OnMove(InputAction.CallbackContext context)
     {
-
-        movement = context.ReadValue<Vector2>() * this.movementSpeed;
+        if (alive)
+        {
+            movement = context.ReadValue<Vector2>() * this.movementSpeed;
+        }
 
     }
 
@@ -48,9 +50,9 @@ public class Player : Entity
         evolutionText.text = this.evolutionPoints + "EP";
     }
 
-    public override void entityDeath()
+    public override void entityDeath(Entity source)
     {
-        Destroy(this);
+        alive = false;
         hud.gameObject.SetActive(false);
         GameoverScreen.gameObject.SetActive(true);
     }
