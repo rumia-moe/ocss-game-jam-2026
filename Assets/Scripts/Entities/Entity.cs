@@ -251,7 +251,7 @@ public abstract class Entity : MonoBehaviour, IInteractable
             1f
         );
 
-        Debug.Log($"[RandomizeModel] First CP after randomize: {profile.controlPoints[0]}, globalScale: {globalScale}");    
+        //Debug.Log($"[RandomizeModel] First CP after randomize: {profile.controlPoints[0]}, globalScale: {globalScale}");    
         chain.Init();
 
         var fishRenderer = chain.GetComponent<IKChainRenderer>();
