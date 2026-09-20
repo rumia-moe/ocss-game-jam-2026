@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 62d9b419c80a61547bd4060809ba2109
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/world-jakob.unity
     guid: 5584361f8850ebc45b1584bed7a7fda8
   - enabled: 1
