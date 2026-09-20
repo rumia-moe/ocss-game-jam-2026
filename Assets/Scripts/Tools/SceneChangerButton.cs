@@ -1,4 +1,3 @@
-using Unity.Tutorials.Editor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
