@@ -288,7 +288,7 @@ GameObject:
   - component: {fileID: 8310718622707097210}
   - component: {fileID: 7846070881756729950}
   - component: {fileID: 5906783054185842980}
-  - component: {fileID: 9139795829505624519}
+  - component: {fileID: 9207963037990987550}
   m_Layer: 0
   m_Name: Swordfish
   m_TagString: Untagged
@@ -494,7 +494,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0.15}
   m_Radius: 0.5
---- !u!114 &9139795829505624519
+--- !u!114 &9207963037990987550
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -505,9 +505,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 461e14ca0e662ab4ebb5cd1fbf5b3b0f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SwordfishEntity
+  m_EditorClassIdentifier: Assembly-CSharp::BraindeadEntity
   overtnessCollider: {fileID: 7846070881756729950}
-  hitboxCollider: {fileID: 0}
+  hitboxCollider: {fileID: 5906783054185842980}
   indicatorContainer: {fileID: 3545252470885241206}
   explosionPrefab: {fileID: 6109236595777097787, guid: 42c2166916c964c418558dfc1ad1b111, type: 3}
   movementSpeed: 1

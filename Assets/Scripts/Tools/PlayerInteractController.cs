@@ -92,6 +92,7 @@ public class PlayerInteractController : MonoBehaviour
             unselectCurrent();
             currentInteractable = null;
             index = 0;
+            player.infoHandler.ChangeInfo(player);
         }
         
         if(currentInteractable != null)
