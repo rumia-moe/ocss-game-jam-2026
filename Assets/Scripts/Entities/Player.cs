@@ -55,6 +55,8 @@ public class Player : Entity
     public override void entityDeath(Entity source)
     {
         alive = false;
+        movement = Vector2.zero;
+        rigidbody.gravityScale = 1f;
         hud.gameObject.SetActive(false);
         GameoverScreen.gameObject.SetActive(true);
     }

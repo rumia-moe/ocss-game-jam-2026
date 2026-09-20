@@ -8,7 +8,7 @@ public class SwordfishEntity : Entity
     [HideInInspector]
     public override string EntityName { get; set; } = "Swordfish";
 
-    public override float EntityMaxHealth { get; set; } = 11f;
+    public override float EntityMaxHealth { get; set; } = 2f;
 
     public override EntitySkill PrimarySkill { get; set; }
 

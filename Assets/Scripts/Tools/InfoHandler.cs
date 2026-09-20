@@ -13,12 +13,15 @@ public class InfoHandler : MonoBehaviour
 
     public void ChangeInfo(Entity muse)
     {
-        title.text = muse.EntityName;
-        healthValue.text = muse.EntityMaxHealth.ToString();
-        attackValue.text = muse.damage.ToString();
-        insightValue.text = muse.insight.ToString();
-        agilityValue.text = muse.movementSpeed.ToString();
-        intellectValue.text = muse.intelect.ToString(); 
+        if (muse != null)
+        {
+            title.text = muse.EntityName;
+            healthValue.text = muse.EntityMaxHealth.ToString();
+            attackValue.text = muse.damage.ToString();
+            insightValue.text = muse.insight.ToString();
+            agilityValue.text = muse.movementSpeed.ToString();
+            intellectValue.text = muse.intelect.ToString();
+        }
     }
 
 
