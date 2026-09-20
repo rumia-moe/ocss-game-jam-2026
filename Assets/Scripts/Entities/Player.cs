@@ -33,7 +33,6 @@ public class Player : Entity
 
     public void OnMove(InputAction.CallbackContext context)
     {
-
         movement = context.ReadValue<Vector2>() * this.movementSpeed * 500f;
 
     }
@@ -63,6 +62,8 @@ public class Player : Entity
 
     protected override void FixedUpdate() {
         base.FixedUpdate();
+        if (!alive) return;
+        if (transform.position.y >= oceanBoundary) return;
         if (movement != Vector2.zero) {
             rigidbody.AddForce(movement * Time.deltaTime);
         }

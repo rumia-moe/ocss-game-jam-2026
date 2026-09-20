@@ -42,7 +42,7 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
     public GameObject Indicator => indicatorContainer;
 
-    private float oceanBoundary = 22;
+    protected float oceanBoundary = 22;
 
     public InfoHandler infoHandler;
 
@@ -72,8 +72,8 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
     protected virtual void Update() { }
 
-    protected virtual void FixedUpdate() { 
-    
+    protected virtual void FixedUpdate() {
+
         if(transform.position.y >= oceanBoundary)
         {
             rigidbody.gravityScale = 2;
@@ -82,7 +82,7 @@ public abstract class Entity : MonoBehaviour, IInteractable
         {
             rigidbody.gravityScale = 0;
         }
-    
+
     }
 
     public virtual void UseSkill(EntitySkill skill)
@@ -94,7 +94,7 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
     public virtual void UseSkill(EntitySkill skill, Entity target) {
 
-        
+
 
         if (entitySkillLastUsed.TryGetValue(skill.GetHashCode(), out var lastUsed))
         {
@@ -107,7 +107,7 @@ public abstract class Entity : MonoBehaviour, IInteractable
         skill.Use(this, target);
     }
 
-    public virtual void Interact() 
+    public virtual void Interact()
     {
     }
 
@@ -145,12 +145,12 @@ public abstract class Entity : MonoBehaviour, IInteractable
         Destroy(gameObject);
     }
 
-    public virtual void OnSelect() 
+    public virtual void OnSelect()
     {
         Indicator.SetActive(true);
         infoHandler.ChangeInfo(this);
     }
-    public virtual void OnUnselect() 
+    public virtual void OnUnselect()
     {
         Indicator.SetActive(false);
     }
@@ -248,7 +248,7 @@ public abstract class Entity : MonoBehaviour, IInteractable
             1f
         );
 
-        Debug.Log($"[RandomizeModel] First CP after randomize: {profile.controlPoints[0]}, globalScale: {globalScale}");    
+        Debug.Log($"[RandomizeModel] First CP after randomize: {profile.controlPoints[0]}, globalScale: {globalScale}");
         chain.Init();
 
         var fishRenderer = chain.GetComponent<IKChainRenderer>();
@@ -257,7 +257,7 @@ public abstract class Entity : MonoBehaviour, IInteractable
         {
             Material mat = new Material(fishRenderer.bodyMaterial);
             mat.SetColor("_Color", profile.bodyColor);
-            
+
             // Must set on the MeshRenderer directly, not just bodyMaterial
             meshRenderer.material = mat;
             fishRenderer.bodyMaterial = mat;
