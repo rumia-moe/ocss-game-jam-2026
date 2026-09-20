@@ -10,7 +10,7 @@ public class BraindeadEntity : Entity
 
     public override float EntityMaxHealth { get; set; } = 2f;
 
-    protected override EntitySkill[] EntitySkills { get; set; }
+    protected override EntitySkill PrimarySkill { get; set; }
 
     private NavMeshAgent agent;
 
@@ -24,7 +24,7 @@ public class BraindeadEntity : Entity
         this.agent.updateRotation = false;
         this.agent.updateUpAxis = false;
 
-        this.EntitySkills = new EntitySkill[] { new PierceEntitySkill(this.agent) };
+        this.PrimarySkill = new PierceEntitySkill(this.agent);
 
     }
 
@@ -33,7 +33,7 @@ public class BraindeadEntity : Entity
 
         base.Update();
 
-        base.UseSkill(EntitySkills[0]);
+        base.UseSkill(this.PrimarySkill);
 
         this.agent.SetDestination(FindAnyObjectByType<Player>().transform.position);
 
