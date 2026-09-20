@@ -46,6 +46,8 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
     public InfoHandler infoHandler;
 
+    public bool alive = true;
+
     protected virtual void Awake()
     {
         this.EntityCurrentHealth = this.EntityMaxHealth;
@@ -132,9 +134,7 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
         if(EntityCurrentHealth <= 0)
         {
-            source.evolutionPoints += this.EntityMaxHealth * source.intelect + this.evolutionPoints;
-            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+           
         }
     }
 
