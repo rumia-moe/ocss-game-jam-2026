@@ -18,6 +18,7 @@ public class InfoHandler : MonoBehaviour
         attackValue.text = muse.damage.ToString();
         insightValue.text = muse.insight.ToString();
         agilityValue.text = muse.movementSpeed.ToString();
+        abilityList.text = muse.intelect.ToString();
     }
 
 

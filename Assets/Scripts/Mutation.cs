@@ -22,7 +22,7 @@ public class Mutation : MonoBehaviour
 
         float multiplier = cost / 50f;
 
-        List<int> availableIndices = new List<int> { 0, 1, 2, 3, 4 };
+        List<int> availableIndices = new List<int> { 0, 1, 2, 3, 4, 5 };
         descText.text = string.Empty;
 
         for (int i = 0; i < attributes.Length; i++)
@@ -56,6 +56,10 @@ public class Mutation : MonoBehaviour
                     finalValue = baseRoll / multiplier;
                     attributes[i] = new SizeEntityAttribute(finalValue);
                     break;
+                case 5:
+                    finalValue = baseRoll * multiplier;
+                    attributes[i] = new IntelectEntityAttribute(finalValue);
+                    break;
             }
 
             descText.text += $"{attributes[i].EntityAttributeName} : {finalValue:F2}\n";
@@ -74,6 +78,7 @@ public class Mutation : MonoBehaviour
         }
         player.randomizModel();
         player.EntityCurrentHealth = player.EntityMaxHealth;
+        player.changeHealth(0f, player);
         Instantiate(explosion, parent.transform.position, Quaternion.identity);
         Instantiate(coral, parent.transform.position, Quaternion.identity);
         Destroy(parent);
