@@ -25,6 +25,9 @@ public abstract class Entity : MonoBehaviour, IInteractable
     public virtual float EntityMaxHealth { get; set; } = 10f;
     public virtual float EntityCurrentHealth { get; set; }
 
+
+    public float evolutionPoints = 0f;
+
     // Attributes
     [HideInInspector]
     public float movementSpeed = 1f;
@@ -32,6 +35,8 @@ public abstract class Entity : MonoBehaviour, IInteractable
     public float insight = 1f;
     [HideInInspector]
     public float damage = 1f;
+    [HideInInspector]
+    public float intelect = 1f;
 
     public virtual List<EntityAttribute> EntityAttributes { get; set; } = new List<EntityAttribute>{ };
     protected virtual EntitySkill PrimarySkill { get; set; }
@@ -43,7 +48,7 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
     private float oceanBoundary = 22;
 
-    private InfoHandler infoHandler;
+    public InfoHandler infoHandler;
 
     protected virtual void Awake()
     {
@@ -110,7 +115,7 @@ public abstract class Entity : MonoBehaviour, IInteractable
         if (entity == null) return;
         if (collision.collider != entity.hitboxCollider) return;
 
-        changeHealth(-this.damage);
+        entity.changeHealth(-this.damage, this);
 
         Vector2 forceDirection = collision.transform.position - transform.position;
 
@@ -118,13 +123,13 @@ public abstract class Entity : MonoBehaviour, IInteractable
         collision.otherCollider.GetComponent<Rigidbody2D>().AddForce(forceDirection.normalized * -2f, ForceMode2D.Impulse);
     }
 
-    public virtual void changeHealth(float health)
+    public virtual void changeHealth(float health, Entity source)
     {
-        EntityCurrentHealth -= this.damage;
+        EntityCurrentHealth += health;
 
         if(EntityCurrentHealth <= 0)
         {
-            FindAnyObjectByType<Player>().evolutionPoints += this.EntityMaxHealth;
+            source.evolutionPoints += this.EntityMaxHealth * source.intelect;
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }

@@ -10,9 +10,8 @@ public class Player : Entity
     [HideInInspector]
     public override string EntityName { get; set; } = "Player";
 
-    public override List<EntityAttribute> EntityAttributes { get; set; } = new List<EntityAttribute> { new MovementSpeedEntityAttribute(5f * 100f) };
+    public override List<EntityAttribute> EntityAttributes { get; set; } = new List<EntityAttribute> { new MovementSpeedEntityAttribute(5f * 100f), new IntelectEntityAttribute(10f) };
 
-    public float evolutionPoints = 0f;
 
     public HeartsHud healthUI;
 
@@ -33,9 +32,9 @@ public class Player : Entity
 
     }
 
-    public override void changeHealth(float health)
+    public override void changeHealth(float health, Entity source)
     {
-        base.changeHealth(health);
+        base.changeHealth(health, source);
 
         healthUI.DrawHearts((int)EntityCurrentHealth, (int)EntityMaxHealth);
     }
