@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1e2f317828af3414d9ac74b0df48f062
+guid: 4f14b0f6759d7704f9aeb1f75120244b
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -36,7 +36,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 32
+    spritePixelsToUnits: 100
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -103,7 +103,7 @@ ScriptedImporter:
     addShadowCasters: 0
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
-  platformSettingsDirtyTick: 639255058901958174
+  platformSettingsDirtyTick: 639255064585007546
   singleSpriteImportData:
   - name: 
     originalName: 
@@ -127,9 +127,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: GameJameSprites
+  - name: particle
     originalName: 
-    pivot: {x: 0.5, y: -0.25396827}
+    pivot: {x: 0.5, y: -0.16666667}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -137,9 +137,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 90
-      height: 63
-    spriteID: 68a281a09f0aadb4aae55f98b1a1b9e2
+      width: 12
+      height: 12
+    spriteID: 823c2cddbe2ed0943a8ac58b14c3f467
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -148,135 +148,30 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  spriteSheetImportData:
-  - name: GameJameSprites_1
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 0
-      y: 36
-      width: 32
-      height: 32
-    spriteID: bd7910ce7da60e24184244aa328860a5
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: GameJameSprites_2
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 32
-      y: 36
-      width: 32
-      height: 32
-    spriteID: 0aabd9c88dd038347aecc5823deef517
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: GameJameSprites_3
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 64
-      y: 36
-      width: 32
-      height: 32
-    spriteID: 079db9c6bdc10d9468dac7f0a0d5f352
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: GameJameSprites_4
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 0
-      y: 4
-      width: 32
-      height: 32
-    spriteID: b9d38813dc8fb1d47a7128bed98a4eec
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: GameJameSprites_5
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 32
-      y: 4
-      width: 32
-      height: 32
-    spriteID: a916361bd4f07a34da8faf1dd372af9d
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
+  spriteSheetImportData: []
   tileSetImportData: []
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 2229588843
+      value0: 2179989136
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: GameJameSprites
+    name: particle
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: GameJameSprites
+    - name: particle
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 3
-        y: 16
-        width: 90
-        height: 63
-      spriteId: 68a281a09f0aadb4aae55f98b1a1b9e2
+        x: 2
+        y: 2
+        width: 12
+        height: 12
+      spriteId: 823c2cddbe2ed0943a8ac58b14c3f467
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -321,5 +216,5 @@ ScriptedImporter:
     androidETC2FallbackOverride: 0
   generatePhysicsShape: 0
   secondarySpriteTextures: []
-  previousTextureSize: {x: 128, y: 128}
-  canvasSize: {x: 96, y: 80}
+  previousTextureSize: {x: 32, y: 32}
+  canvasSize: {x: 16, y: 16}

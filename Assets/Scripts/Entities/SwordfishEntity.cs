@@ -10,7 +10,7 @@ public class SwordfishEntity : Entity
 
     public override float EntityMaxHealth { get; set; } = 11f;
 
-    protected override EntitySkill PrimarySkill { get; set; }
+    public override EntitySkill PrimarySkill { get; set; }
 
     private NavMeshAgent agent;
 

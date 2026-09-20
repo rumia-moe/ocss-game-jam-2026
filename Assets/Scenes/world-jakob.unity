@@ -726,6 +726,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Swordfish
       objectReference: {fileID: 0}
+    - target: {fileID: 1682977062285312302, guid: 6a62591e25fe99942b4eca870b342d08, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8740758844917222527, guid: 6a62591e25fe99942b4eca870b342d08, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.74967

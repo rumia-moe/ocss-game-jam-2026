@@ -11,7 +11,7 @@ public class DashEntitySkill : EntitySkill
     {
 
         var rb = source.GetComponent<Rigidbody2D>();
-        rb.AddForce(rb.linearVelocity * 10f);
+        rb.AddForce(rb.linearVelocity.normalized * 100f);
 
     }
 

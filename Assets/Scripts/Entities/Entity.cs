@@ -1,9 +1,5 @@
 using System.Collections.Generic;
-using Unity.VectorGraphics;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using static UnityEngine.EventSystems.EventTrigger;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
@@ -39,8 +35,8 @@ public abstract class Entity : MonoBehaviour, IInteractable
     public float intelect = 1f;
 
     public virtual List<EntityAttribute> EntityAttributes { get; set; } = new List<EntityAttribute>{ };
-    protected virtual EntitySkill PrimarySkill { get; set; }
-    protected virtual EntitySkill SecondarySkill { get; set; }
+    public virtual EntitySkill PrimarySkill { get; set; }
+    public virtual EntitySkill SecondarySkill { get; set; }
 
     public Collider2D SelectableCollider => overtnessCollider;
 
@@ -62,7 +58,7 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
         rigidbody = GetComponent<Rigidbody2D>();
 
-        infoHandler = GameObject.FindAnyObjectByType<Player>().GetComponent<InfoHandler>();
+        infoHandler = FindAnyObjectByType<Player>().GetComponent<InfoHandler>();
 
         foreach (var entityAttribute in EntityAttributes)
         {
@@ -89,8 +85,16 @@ public abstract class Entity : MonoBehaviour, IInteractable
     
     }
 
-    protected virtual void UseSkill(EntitySkill skill)
+    public virtual void UseSkill(EntitySkill skill)
     {
+
+        this.UseSkill(skill, FindAnyObjectByType<Player>());
+
+    }
+
+    public virtual void UseSkill(EntitySkill skill, Entity target) {
+
+        
 
         if (entitySkillLastUsed.TryGetValue(skill.GetHashCode(), out var lastUsed))
         {
@@ -100,8 +104,7 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
         entitySkillLastUsed[skill.GetHashCode()] = Time.time;
 
-        skill.Use(this, FindAnyObjectByType<Player>());
-
+        skill.Use(this, target);
     }
 
     public virtual void Interact() 

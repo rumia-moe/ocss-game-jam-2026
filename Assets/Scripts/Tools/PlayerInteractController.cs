@@ -20,6 +20,8 @@ public class PlayerInteractController : MonoBehaviour
     private InputAction down;
 
     private InputAction up;
+    private InputAction primary;
+    private InputAction secondary;
 
     private ContactFilter2D filter;
 
@@ -31,6 +33,8 @@ public class PlayerInteractController : MonoBehaviour
         right = playerActionMap.FindAction("UI_RIGHT");
         up = playerActionMap.FindAction("UI_UP");
         down = playerActionMap.FindAction("UI_DOWN");
+        primary = playerActionMap.FindAction("PRIMARY");
+        secondary = playerActionMap.FindAction("SECONDARY");
 
         interact.performed += OnInteract;
 
@@ -39,6 +43,9 @@ public class PlayerInteractController : MonoBehaviour
 
         up.performed += OnUIMoveNegative;
         right.performed += OnUIMoveNegative;
+        primary.performed += OnPrimary;
+        secondary.performed += OnSecondary;
+
 
         filter = new ContactFilter2D();
         filter.SetLayerMask(LayerMask.GetMask("Default"));
@@ -55,6 +62,8 @@ public class PlayerInteractController : MonoBehaviour
 
         up.performed -= OnUIMoveNegative;
         right.performed -= OnUIMoveNegative;
+        primary.performed -= OnPrimary;
+        secondary.performed -= OnSecondary;
     }
 
 
@@ -166,6 +175,16 @@ public class PlayerInteractController : MonoBehaviour
         if (currentInteractable != null) {
             currentInteractable.GetComponent<IInteractable>().Interact();
         }
+    }
+
+    public void OnPrimary(InputAction.CallbackContext context) {
+        if (currentInteractable == null) return;
+        var target = currentInteractable.GetComponent<Entity>();
+        if (target == null) return;
+        player.UseSkill(player.PrimarySkill, target);
+    }
+    public void OnSecondary(InputAction.CallbackContext context) {
+        player.UseSkill(player.SecondarySkill);
     }
 
     public void OnDrawGizmos()
