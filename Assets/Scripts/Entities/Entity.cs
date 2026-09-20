@@ -46,6 +46,8 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
     public InfoHandler infoHandler;
 
+    public bool alive = true;
+
     protected virtual void Awake()
     {
         this.EntityCurrentHealth = this.EntityMaxHealth;
@@ -118,7 +120,10 @@ public abstract class Entity : MonoBehaviour, IInteractable
         if (entity == null) return;
         if (collision.collider != entity.hitboxCollider) return;
 
-        entity.changeHealth(-this.damage, this);
+        if (alive)
+        {
+            entity.changeHealth(-this.damage, this);
+        }
 
         Vector2 forceDirection = collision.transform.position - transform.position;
 
@@ -132,10 +137,15 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
         if(EntityCurrentHealth <= 0)
         {
-            source.evolutionPoints += this.EntityMaxHealth * source.intelect + this.evolutionPoints;
-            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            entityDeath(source);
         }
+    }
+
+    public virtual void entityDeath(Entity source)
+    {
+        source.evolutionPoints += this.EntityMaxHealth * source.intelect;
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
     public virtual void OnSelect() 

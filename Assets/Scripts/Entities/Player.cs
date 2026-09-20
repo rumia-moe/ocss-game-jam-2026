@@ -15,6 +15,9 @@ public class Player : Entity
     public override EntitySkill PrimarySkill { get; set; } = new AttackEntitySkill();
     public override EntitySkill SecondarySkill { get; set; } = new DashEntitySkill();
 
+    public Canvas hud;
+    public Canvas GameoverScreen;
+
     public HeartsHud healthUI;
 
     private Vector2 movement = Vector2.zero;
@@ -29,8 +32,10 @@ public class Player : Entity
 
     public void OnMove(InputAction.CallbackContext context)
     {
-
-        movement = context.ReadValue<Vector2>() * this.movementSpeed * 500f;
+        if (alive)
+        {
+            movement = context.ReadValue<Vector2>() * this.movementSpeed;
+        }
 
     }
 
@@ -45,6 +50,15 @@ public class Player : Entity
     {
         base.Update();
         evolutionText.text = this.evolutionPoints + "EP";
+    }
+
+    public override void entityDeath(Entity source)
+    {
+        alive = false;
+        movement = Vector2.zero;
+        rigidbody.gravityScale = 1f;
+        hud.gameObject.SetActive(false);
+        GameoverScreen.gameObject.SetActive(true);
     }
 
     protected override void FixedUpdate() {
