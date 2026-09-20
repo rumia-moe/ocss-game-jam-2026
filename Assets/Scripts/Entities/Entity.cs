@@ -98,7 +98,6 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
     public virtual void Interact() 
     {
-        infoHandler.ChangeInfo(this);
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
@@ -133,6 +132,7 @@ public abstract class Entity : MonoBehaviour, IInteractable
     public virtual void OnSelect() 
     {
         Indicator.SetActive(true);
+        infoHandler.ChangeInfo(this);
     }
     public virtual void OnUnselect() 
     {
