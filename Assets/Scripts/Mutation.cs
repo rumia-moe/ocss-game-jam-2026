@@ -71,6 +71,7 @@ public class Mutation : MonoBehaviour
             player.EntityAttributes.Add(attribute);
             attribute.Add(player);
         }
+        player.randomizModel();
         Instantiate(explosion, parent.transform.position, Quaternion.identity);
         Destroy(parent);
     }
