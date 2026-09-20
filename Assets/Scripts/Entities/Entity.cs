@@ -74,13 +74,16 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
     protected virtual void FixedUpdate() {
 
-        if(transform.position.y >= oceanBoundary)
+        if (alive)
         {
-            rigidbody.gravityScale = 2;
-        }
-        else
-        {
-            rigidbody.gravityScale = 0;
+            if (transform.position.y >= oceanBoundary)
+            {
+                rigidbody.gravityScale = 1f;
+            }
+            else
+            {
+                rigidbody.gravityScale = 0;
+            }
         }
 
     }
