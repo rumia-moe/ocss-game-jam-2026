@@ -179,12 +179,12 @@ public class PlayerInteractController : MonoBehaviour
 
     public void OnPrimary(InputAction.CallbackContext context) {
         if (currentInteractable == null) return;
-        if (!currentInteractable.TryGetComponent<Entity>(out var target)) return;
+        var target = currentInteractable.GetComponent<Entity>();
+        if (target == null) return;
         player.UseSkill(player.PrimarySkill, target);
     }
     public void OnSecondary(InputAction.CallbackContext context) {
         player.UseSkill(player.SecondarySkill);
-
     }
 
     public void OnDrawGizmos()
