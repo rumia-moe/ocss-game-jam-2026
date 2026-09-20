@@ -24,6 +24,9 @@ public class FishProfile : ScriptableObject
     [Range(0f, 1f)]
     public float followSpeed = 0.12f;
 
+    [Header("Appearance")]
+    public Color bodyColor = Color.white;
+
     public int solverIterations = 5;
 
     public static FishProfile GenerateFromCurve(AnimationCurve heightCurve, AnimationCurve lengthCurve, int segCount, float totalLength, float maxHeight)
