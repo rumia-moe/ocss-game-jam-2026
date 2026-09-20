@@ -4477,6 +4477,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   overtnessCollider: {fileID: 1585051601533001725}
   hitboxCollider: {fileID: 3313107019915678369}
+  indicatorContainer: {fileID: 0}
+  explosionPrefab: {fileID: 0}
   movementSpeed: 1
   insight: 1
   damage: 1

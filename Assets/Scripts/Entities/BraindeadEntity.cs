@@ -2,11 +2,11 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class SwordfishEntity : Entity
+public class BraindeadEntity : Entity
 {
 
     [HideInInspector]
-    public override string EntityName { get; set; } = "Swordfish";
+    public override string EntityName { get; set; } = "Braindead";
 
     public override float EntityMaxHealth { get; set; } = 2f;
 
