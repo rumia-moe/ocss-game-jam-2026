@@ -5153,7 +5153,7 @@ MonoBehaviour:
   attackValue: {fileID: 4522191106784416236}
   insightValue: {fileID: 8266339911631519505}
   agilityValue: {fileID: 663248286444038862}
-  intellectValue: {fileID: 5839810466941774126}
+  intellectValue: {fileID: 7888457659454313958}
 --- !u!1 &6997446797388311303
 GameObject:
   m_ObjectHideFlags: 0
