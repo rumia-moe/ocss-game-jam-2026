@@ -73,6 +73,7 @@ public class Mutation : MonoBehaviour
             attribute.Add(player);
         }
         player.randomizModel();
+        player.EntityCurrentHealth = player.EntityMaxHealth;
         Instantiate(explosion, parent.transform.position, Quaternion.identity);
         Instantiate(coral, parent.transform.position, Quaternion.identity);
         Destroy(parent);
