@@ -13,16 +13,17 @@ public class EnchantedCoral : MonoBehaviour, IInteractable
     public GameObject Indicator => indicatorContainer;
     
     public void Interact() {
-        
+        canvas.SetActive(!canvas.activeSelf);
     }
 
     public void OnSelect()
     {
-        canvas.SetActive(true);
+        Indicator.SetActive(true);
     }
 
     public void OnUnselect()
     {
+        Indicator.SetActive(false);
         canvas.SetActive(false);
     }
 
