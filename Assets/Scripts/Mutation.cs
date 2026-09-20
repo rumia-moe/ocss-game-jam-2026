@@ -9,6 +9,7 @@ public class Mutation : MonoBehaviour
 
     public Transform explosion;
     public GameObject parent;
+    public Transform coral;
 
 
     private int cost;
@@ -73,6 +74,7 @@ public class Mutation : MonoBehaviour
         }
         player.randomizModel();
         Instantiate(explosion, parent.transform.position, Quaternion.identity);
+        Instantiate(coral, parent.transform.position, Quaternion.identity);
         Destroy(parent);
     }
 }

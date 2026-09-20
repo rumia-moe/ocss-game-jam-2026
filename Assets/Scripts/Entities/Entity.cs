@@ -132,7 +132,7 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
         if(EntityCurrentHealth <= 0)
         {
-            source.evolutionPoints += this.EntityMaxHealth * source.intelect;
+            source.evolutionPoints += this.EntityMaxHealth * source.intelect + this.evolutionPoints;
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }

@@ -425,6 +425,7 @@ MonoBehaviour:
   costText: {fileID: 4503217014239263789}
   explosion: {fileID: 6109236595777097787, guid: 42c2166916c964c418558dfc1ad1b111, type: 3}
   parent: {fileID: 8919967208243316955}
+  coral: {fileID: 8656609765527336839}
 --- !u!1 &3481741955526653311
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,6 +577,7 @@ MonoBehaviour:
   costText: {fileID: 7648940484895010131}
   explosion: {fileID: 6109236595777097787, guid: 42c2166916c964c418558dfc1ad1b111, type: 3}
   parent: {fileID: 8919967208243316955}
+  coral: {fileID: 8656609765527336839}
 --- !u!1 &4635773019712460198
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,6 +866,7 @@ MonoBehaviour:
   costText: {fileID: 2365390612985035686}
   explosion: {fileID: 6109236595777097787, guid: 42c2166916c964c418558dfc1ad1b111, type: 3}
   parent: {fileID: 8919967208243316955}
+  coral: {fileID: 8656609765527336839}
 --- !u!1 &6453725444389208432
 GameObject:
   m_ObjectHideFlags: 0
