@@ -4386,6 +4386,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: fc7e376f-2cbc-42e2-8c5e-aacab975326e
     m_ActionName: Player/UI_RIGHT
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f66db22e-aae7-4cdd-8750-22d52c886d2d
+    m_ActionName: 'Player/PRIMARY[/Keyboard/q]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: eb6b9267-7b8e-484a-a07f-1d8acc6e69ed
+    m_ActionName: 'Player/SECONDARY[/Keyboard/leftShift]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -4478,11 +4486,13 @@ MonoBehaviour:
   overtnessCollider: {fileID: 1585051601533001725}
   hitboxCollider: {fileID: 3313107019915678369}
   indicatorContainer: {fileID: 0}
-  explosionPrefab: {fileID: 0}
-  movementSpeed: 1
+  explosionPrefab: {fileID: 6109236595777097787, guid: 42c2166916c964c418558dfc1ad1b111, type: 3}
+  evolutionPoints: 0
+  movementSpeed: 500
   insight: 1
   damage: 1
-  evolutionPoints: 0
+  intelect: 1
+  infoHandler: {fileID: 4682661404609809479}
   healthUI: {fileID: 4778982884696813477}
   evolutionText: {fileID: 6913018565284675098}
 --- !u!114 &4004713527157829045

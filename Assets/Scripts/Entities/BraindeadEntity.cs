@@ -22,6 +22,20 @@ public class BraindeadEntity : Entity
         this.agent.updateRotation = false;
         this.agent.updateUpAxis = false;
 
+        agent.SetDestination(GoRandom());
+
+    }
+
+    Vector2 GoRandom()
+    {
+        Vector2 target = Random.insideUnitCircle * 5f + (Vector2)transform.position;
+
+        if (NavMesh.SamplePosition(target, out NavMeshHit hit, 5f, NavMesh.AllAreas))
+        {
+            return hit.position;
+        }
+
+        return transform.position;
     }
 
     protected override void Update()
@@ -29,8 +43,10 @@ public class BraindeadEntity : Entity
 
         base.Update();
 
-        //this.agent.SetDestination(FindAnyObjectByType<Player>().transform.position);
+        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+        {
 
+            agent.SetDestination(GoRandom());
+        }
     }
-
 }
