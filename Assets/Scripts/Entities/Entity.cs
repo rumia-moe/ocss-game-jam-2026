@@ -124,10 +124,15 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
         if(EntityCurrentHealth <= 0)
         {
-            FindAnyObjectByType<Player>().evolutionPoints += this.EntityMaxHealth;
-            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            entityDeath();
         }
+    }
+
+    public virtual void entityDeath()
+    {
+        FindAnyObjectByType<Player>().evolutionPoints += this.EntityMaxHealth;
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
     public virtual void OnSelect() 

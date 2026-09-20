@@ -14,6 +14,9 @@ public class Player : Entity
 
     public float evolutionPoints = 0f;
 
+    public Canvas hud;
+    public Canvas GameoverScreen;
+
     public HeartsHud healthUI;
 
     private Vector2 movement = Vector2.zero;
@@ -44,6 +47,13 @@ public class Player : Entity
     {
         base.Update();
         evolutionText.text = this.evolutionPoints + "EP";
+    }
+
+    public override void entityDeath()
+    {
+        Destroy(this);
+        hud.gameObject.SetActive(false);
+        GameoverScreen.gameObject.SetActive(true);
     }
 
     protected override void FixedUpdate() {
