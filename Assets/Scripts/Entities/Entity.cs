@@ -34,7 +34,8 @@ public abstract class Entity : MonoBehaviour, IInteractable
     public float damage = 1f;
 
     public virtual List<EntityAttribute> EntityAttributes { get; set; } = new List<EntityAttribute>{ };
-    protected virtual EntitySkill[] EntitySkills { get; set; } = { };
+    protected virtual EntitySkill PrimarySkill { get; set; }
+    protected virtual EntitySkill SecondarySkill { get; set; }
 
     public Collider2D SelectableCollider => overtnessCollider;
 
@@ -98,7 +99,6 @@ public abstract class Entity : MonoBehaviour, IInteractable
 
     public virtual void Interact() 
     {
-        infoHandler.ChangeInfo(this);
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
@@ -133,6 +133,7 @@ public abstract class Entity : MonoBehaviour, IInteractable
     public virtual void OnSelect() 
     {
         Indicator.SetActive(true);
+        infoHandler.ChangeInfo(this);
     }
     public virtual void OnUnselect() 
     {

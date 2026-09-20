@@ -10,8 +10,6 @@ public class SwordfishEntity : Entity
 
     public override float EntityMaxHealth { get; set; } = 2f;
 
-    protected override EntitySkill[] EntitySkills { get; set; }
-
     private NavMeshAgent agent;
 
     protected override void Start()
@@ -24,8 +22,6 @@ public class SwordfishEntity : Entity
         this.agent.updateRotation = false;
         this.agent.updateUpAxis = false;
 
-        this.EntitySkills = new EntitySkill[] { new PierceEntitySkill(this.agent) };
-
     }
 
     protected override void Update()
@@ -33,9 +29,7 @@ public class SwordfishEntity : Entity
 
         base.Update();
 
-        base.UseSkill(EntitySkills[0]);
-
-        this.agent.SetDestination(FindAnyObjectByType<Player>().transform.position);
+        //this.agent.SetDestination(FindAnyObjectByType<Player>().transform.position);
 
     }
 
