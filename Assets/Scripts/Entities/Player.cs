@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.HID;
 
 [RequireComponent(typeof(PlayerInput))]
 public class Player : Entity
@@ -14,6 +15,9 @@ public class Player : Entity
 
     public override EntitySkill PrimarySkill { get; set; } = new AttackEntitySkill();
     public override EntitySkill SecondarySkill { get; set; } = new DashEntitySkill();
+
+    public GameObject hud;
+    public GameObject GameOver;
 
     public HeartsHud healthUI;
 
@@ -46,6 +50,16 @@ public class Player : Entity
         base.Update();
         evolutionText.text = this.evolutionPoints + "EP";
     }
+
+    public override void entityDeath(Entity source)
+    {
+        alive = false;
+        movement = Vector2.zero;
+        rigidbody.gravityScale = 1f;
+        hud.gameObject.SetActive(false);
+        GameOver.gameObject.SetActive(true);
+    }
+
 
     protected override void FixedUpdate() {
         base.FixedUpdate();
