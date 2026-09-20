@@ -10,7 +10,7 @@ public class Player : Entity
     [HideInInspector]
     public override string EntityName { get; set; } = "Player";
 
-    public override List<EntityAttribute> EntityAttributes { get; set; } = new List<EntityAttribute> { new MovementSpeedEntityAttribute(5f * 100f), new IntelectEntityAttribute(10f) };
+    public override List<EntityAttribute> EntityAttributes { get; set; } = new List<EntityAttribute> { new IntelectEntityAttribute(10f) };
 
     public override EntitySkill PrimarySkill { get; set; } = new AttackEntitySkill();
     public override EntitySkill SecondarySkill { get; set; } = new DashEntitySkill();
