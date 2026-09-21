@@ -78,7 +78,7 @@ public abstract class Entity : MonoBehaviour, IInteractable
         {
             if (transform.position.y >= oceanBoundary)
             {
-                rigidbody.gravityScale = 1f;
+                rigidbody.gravityScale = 2f;
             }
             else
             {

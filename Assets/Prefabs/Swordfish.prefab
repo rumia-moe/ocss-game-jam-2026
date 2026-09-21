@@ -410,7 +410,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -510,9 +510,13 @@ MonoBehaviour:
   hitboxCollider: {fileID: 5906783054185842980}
   indicatorContainer: {fileID: 3545252470885241206}
   explosionPrefab: {fileID: 6109236595777097787, guid: 42c2166916c964c418558dfc1ad1b111, type: 3}
+  evolutionPoints: 0
   movementSpeed: 1
   insight: 1
   damage: 1
+  intelect: 1
+  infoHandler: {fileID: 0}
+  alive: 1
 --- !u!1001 &2301020964336857235
 PrefabInstance:
   m_ObjectHideFlags: 0
